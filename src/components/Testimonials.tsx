@@ -16,7 +16,7 @@ export const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      content: "LeadChase completely transformed our lead generation process. We're seeing 3x more qualified leads and our sales team can finally focus on closing instead of prospecting.",
+      content: "LeadChoose completely transformed our lead generation process. We're seeing 3x more qualified leads and our sales team can finally focus on closing instead of prospecting.",
       author: "Sarah Johnson",
       role: "Marketing Director",
       company: "TechCorp",
@@ -26,7 +26,7 @@ export const Testimonials: React.FC = () => {
     },
     {
       id: 2,
-      content: "We implemented LeadChase six months ago and have already seen a 42% increase in conversion rates. The analytics dashboard makes it easy to track and optimize performance.",
+      content: "We implemented LeadChoose six months ago and have already seen a 42% increase in conversion rates. The analytics dashboard makes it easy to track and optimize performance.",
       author: "Michael Chen",
       role: "CEO",
       company: "GrowthLabs",

@@ -8,8 +8,8 @@ const benefits = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    title: 'Quick Implementation',
-    desc: 'Get up and running in minutes, not days or weeks',
+    title: 'Be the First',
+    desc: 'Get exclusive early access before anyone else.',
     float: 'float0',
   },
   {
@@ -18,8 +18,8 @@ const benefits = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    title: 'ROI Guarantee',
-    desc: 'We guarantee a positive ROI within 90 days',
+    title: 'FREE Beta Access',
+    desc: 'Use LeadFlow completely free during our initial launch.',
     float: 'float1',
   },
   {
@@ -28,8 +28,8 @@ const benefits = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    title: 'Expert Support',
-    desc: 'Our team is here to help you succeed',
+    title: 'LIFETIME 50% Discount',
+    desc: 'Secure half-price access FOREVER as a founding user.',
     float: 'float2',
   },
 ];
@@ -89,10 +89,10 @@ export const Contact: React.FC = () => {
           {/* Benefits */}
           <div className="space-y-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Ready to transform your lead generation?
+              Don't Miss Out – Revolutionize Your Real Estate Business
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Schedule a demo with our team to see how LeadChase can help your business generate more qualified leads.
+              Enter your email below to join the exclusive LeadFlow waitlist. Be the first to experience automated nurturing designed for agents.
             </p>
             <div className="flex flex-col gap-7">
               {benefits.map((b, i) => (

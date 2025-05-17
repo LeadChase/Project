@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-8 md:gap-0">
           <div className="flex items-center gap-6">
             <Logo />
-            <span className="text-lg font-semibold text-gray-800 hidden sm:inline-block">LeadChase</span>
+            <span className="text-lg font-semibold text-gray-800 hidden sm:inline-block">LeadFlow</span>
           </div>
           <div className="flex space-x-3 mt-2 md:mt-0">
             {[{
@@ -62,7 +62,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div className="lg:col-span-1">
             <p className="text-gray-500 mb-8 max-w-md">
-              LeadChase helps businesses convert website visitors into qualified leads with AI-powered lead generation and qualification tools.
+              LeadFlow helps real estate agents nurture leads automatically across Email, SMS & Voice. Focus on what matters most — closing deals.
             </p>
           </div>
           <div>
@@ -99,7 +99,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} LeadChase. All rights reserved.
+            &copy; {new Date().getFullYear()} LeadFlow. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="footer-link text-sm">Privacy Policy</a>
@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mt-6 text-center md:text-left text-gray-500 text-sm">
-          Made with <Heart className="h-4 w-4 inline-block text-red-500 animate-heartbeat" /> by the LeadChase team
+          Made with <Heart className="h-4 w-4 inline-block text-red-500 animate-heartbeat" /> by the LeadFlow team
         </div>
       </div>
       <style>{`

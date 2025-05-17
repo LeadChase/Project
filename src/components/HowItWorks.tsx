@@ -76,7 +76,7 @@ export const HowItWorks: React.FC = () => {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            LeadChase: <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Intelligent Nurturing, Built for Agents Like You.</span>
+            LeadChoose: <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Intelligent Nurturing, Built for Agents Like You.</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
             We're building the simple, powerful platform you've been waiting for, designed <span className="font-semibold">specifically</span> for your Real Estate workflow.
