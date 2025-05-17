@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import React, { useRef, useEffect, useState } from 'react';
+import { Star, CheckCircle2 } from 'lucide-react';
 
 interface Testimonial {
   id: number;
@@ -9,6 +9,7 @@ interface Testimonial {
   company: string;
   rating: number;
   image: string;
+  badge?: string;
 }
 
 export const Testimonials: React.FC = () => {
@@ -20,7 +21,8 @@ export const Testimonials: React.FC = () => {
       role: "Marketing Director",
       company: "TechCorp",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      badge: "Top Agent"
     },
     {
       id: 2,
@@ -29,7 +31,8 @@ export const Testimonials: React.FC = () => {
       role: "CEO",
       company: "GrowthLabs",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      badge: "Verified"
     },
     {
       id: 3,
@@ -38,119 +41,105 @@ export const Testimonials: React.FC = () => {
       role: "Sales Manager",
       company: "InnovateTech",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      badge: "5 Stars"
     }
   ];
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Animation: reveal on scroll
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [inViewArr, setInViewArr] = useState(testimonials.map(() => false));
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % testimonials.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextTestimonial = () => {
-    setActiveIndex((current) => (current + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setActiveIndex((current) => (current - 1 + testimonials.length) % testimonials.length);
-  };
+    const nodes = containerRef.current?.querySelectorAll('.testimonial-card') ?? [];
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const idx = Number((entry.target as HTMLElement).getAttribute('data-step'));
+          if (entry.isIntersecting) {
+            setInViewArr((prev) => {
+              if (prev[idx]) return prev;
+              const next = [...prev];
+              next[idx] = true;
+              return next;
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [testimonials.length]);
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-white relative overflow-x-clip">
+      {/* Soft background glow */}
+      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] bg-indigo-300/20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-purple-300/20 rounded-full blur-3xl z-0"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Trusted by Industry Leaders
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            What Our Customers Say
           </h2>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            See what our customers say about LeadChase
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Real results from real estate professionals and industry leaders
           </p>
         </div>
-        
-        <div className="relative max-w-4xl mx-auto">
-          {/* Decorative elements */}
-          <div className="absolute -top-10 -right-10 w-64 h-64 bg-teal-400 opacity-10 rounded-full filter blur-3xl"></div>
-          <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-400 opacity-10 rounded-full filter blur-3xl"></div>
-          
-          <div className="relative z-10">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-white/20 shadow-xl">
-              <div className="flex flex-col md:flex-row gap-10">
-                <div className="md:w-1/3 flex-shrink-0">
-                  <div className="aspect-square rounded-xl overflow-hidden">
-                    <img 
-                      src={testimonials[activeIndex].image} 
-                      alt={testimonials[activeIndex].author}
-                      className="w-full h-full object-cover" 
-                    />
-                  </div>
-                </div>
-                
-                <div className="md:w-2/3">
-                  <div className="flex mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`h-6 w-6 ${
-                          i < testimonials[activeIndex].rating 
-                            ? 'text-yellow-400 fill-yellow-400' 
-                            : 'text-gray-400'
-                        }`} 
-                      />
-                    ))}
-                  </div>
-                  
-                  <blockquote className="text-xl md:text-2xl font-medium text-white mb-8 leading-relaxed">
-                    "{testimonials[activeIndex].content}"
-                  </blockquote>
-                  
-                  <div>
-                    <p className="text-xl font-semibold text-white">
-                      {testimonials[activeIndex].author}
-                    </p>
-                    <p className="text-blue-200">
-                      {testimonials[activeIndex].role}, {testimonials[activeIndex].company}
-                    </p>
-                  </div>
-                </div>
+        <div
+          ref={containerRef}
+          className="flex flex-col md:flex-row gap-8 md:gap-6 justify-center items-stretch"
+        >
+          {testimonials.map((t, i) => (
+            <div
+              key={t.id}
+              className={`testimonial-card group flex-1 bg-white/90 rounded-2xl shadow-xl border border-gray-100 px-6 py-8 flex flex-col items-center text-center transition-all duration-500 hover:scale-105 hover:shadow-2xl focus:scale-105 focus:shadow-2xl cursor-pointer relative ${inViewArr[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              data-step={i}
+              style={{ transitionDelay: `${i * 120}ms` }}
+              tabIndex={0}
+            >
+              {/* Avatar and badge */}
+              <div className="relative mb-4">
+                <img
+                  src={t.image}
+                  alt={t.author}
+                  className="w-20 h-20 rounded-full object-cover border-4 border-indigo-100 shadow-md mx-auto mb-2"
+                />
+                {t.badge && (
+                  <span className="absolute -bottom-2 -right-2 bg-indigo-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md animate-badgepop">
+                    <CheckCircle2 className="inline-block w-4 h-4 mr-1 -mt-1" />{t.badge}
+                  </span>
+                )}
               </div>
-            </div>
-            
-            <div className="flex justify-center mt-10 space-x-4">
-              <button 
-                onClick={prevTestimonial}
-                className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <div className="flex space-x-2 items-center">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      index === activeIndex ? 'bg-teal-400' : 'bg-white/30'
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
+              {/* Rating */}
+              <div className="flex mb-3 justify-center">
+                {[...Array(5)].map((_, j) => (
+                  <Star
+                    key={j}
+                    className={`h-5 w-5 ${j < t.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
                   />
                 ))}
               </div>
-              <button 
-                onClick={nextTestimonial}
-                className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
+              {/* Content */}
+              <blockquote className="text-lg md:text-xl font-medium text-gray-800 mb-5 leading-relaxed">
+                “{t.content}”
+              </blockquote>
+              {/* Author */}
+              <div className="mb-1 text-indigo-700 font-semibold text-lg">{t.author}</div>
+              <div className="text-gray-500 text-sm mb-2">{t.role}, {t.company}</div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
+      <style>{`
+        .testimonial-card { transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1); }
+        @keyframes badgepop {
+          0% { transform: scale(0.7); opacity: 0; }
+          60% { transform: scale(1.2); opacity: 1; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-badgepop { animation: badgepop 0.7s cubic-bezier(.4,0,.2,1) both; }
+      `}</style>
     </section>
   );
 };
