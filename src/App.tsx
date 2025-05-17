@@ -12,6 +12,8 @@ import { LeadCapture } from './components/Leads/LeadCapture';
 import { CRM as CRMComponent } from './components/AIChat/CRM';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { AIBots } from './components/AIChat/AIBots';
+import { FeatureShowcase } from './components/FeatureShowcase';
+import { TrustedTools } from './components/TrustedTools';
 
 function HomePage() {
   useEffect(() => {
@@ -30,6 +32,8 @@ function HomePage() {
         <Features />
         <HowItWorks />
         <Testimonials />
+        <FeatureShowcase />
+        <TrustedTools />
         <Pricing />
         <Contact />
       </main>
