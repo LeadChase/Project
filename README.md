@@ -8,6 +8,7 @@ SmartRealEstate LeadFlow Automation is a powerful tool designed to streamline le
 - [Running the Project](#running-the-project)
 - [Environment Variables](#environment-variables)
 - [Features](#features)
+- [Deployment](#deployment)
 
 ## Prerequisites
 
@@ -66,6 +67,67 @@ To use the AI-powered voice and chat assistants, you need to configure the envir
 
 For more details, visit the [GitHub repository](https://github.com/wojackbro/SmartRealEstate-LeadFlow-Automation).
 
+## Deployment
+
+### 1. Environment Variables
+
+Create a `.env.production` file (or set these in your hosting provider's environment settings):
+
+```
+APP_URL=https://leadchoose.com
+PORT=80
+SUPABASE_URL=your_production_supabase_url
+SUPABASE_ANON_KEY=your_production_supabase_anon_key
+SMTP_HOST=your_smtp_host
+SMTP_PORT=587
+SMTP_USER=your_smtp_user
+SMTP_PASS=your_smtp_pass
+SMTP_FROM="LeadChoose <noreply@leadchoose.com>"
+NODE_ENV=production
+```
+
+### 2. Build the Frontend
+
+```
+npm run build
+```
+This will generate a `dist` folder with static files.
+
+### 3. Serve the Frontend
+- Serve the `dist` folder using Nginx, Apache, or your backend server.
+- If your backend serves static files, copy the `dist` folder to your backend's public/static directory.
+
+### 4. Deploy the Backend
+- Upload your backend code to your server or hosting provider.
+- Install dependencies:
+  ```
+  npm install
+  ```
+- Start the server:
+  ```
+  npm run start
+  ```
+  Or use a process manager like PM2:
+  ```
+  npx pm2 start dist/server.js --name leadchoose
+  ```
+
+### 5. SSL/HTTPS
+- Make sure your site uses HTTPS (get a certificate via Let's Encrypt or your host).
+
+### 6. CORS
+- Ensure your backend CORS config allows only your production domain (`https://leadchoose.com`).
+
+### 7. Database and SMTP
+- Use production credentials for your database and email.
+
+### 8. Notes
+- The Vite proxy is only for local development.
+- All API calls in the frontend should use `/api/...` (no hardcoded localhost).
+- For email confirmation, `APP_URL` must be set to `https://leadchoose.com`.
+
 ---
+
+For any issues, check your backend and frontend logs, and ensure all environment variables are set correctly.
 
 Feel free to contribute to the project by submitting issues or pull requests. Happy coding!

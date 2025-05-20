@@ -25,7 +25,7 @@ export const LeadReports: React.FC = () => {
   const loadReport = async () => {
     try {
       setLoading(true);
-      const data = await analyticsService.generateReport(timeRange);
+      const data = await analyticsService.generateReport();
       setReport(data);
       setError(null);
     } catch (err) {

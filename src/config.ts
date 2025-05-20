@@ -22,7 +22,7 @@ if (!validateVapiKey(vapiKey)) {
 }
 
 // Default Vapi configuration
-const DEFAULT_VAPI_KEY = 'vapi_public_1234567890abcdef'; // Replace with your actual default key if needed
+// const DEFAULT_VAPI_KEY = 'vapi_public_1234567890abcdef'; // Replace with your actual default key if needed
 const DEFAULT_ASSISTANT_ID = 'default';
 
 // Log the final configuration

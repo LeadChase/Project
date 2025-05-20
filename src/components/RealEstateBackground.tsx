@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const MOTIF_COUNT = 20;
 
@@ -89,7 +89,6 @@ const centralMotifs = [
 
 export const RealEstateBackground: React.FC = () => {
   const motifsArr = useRef(Array.from({ length: MOTIF_COUNT }, (_, i) => randomMotif(i)));
-  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     let frame: number;
@@ -111,7 +110,6 @@ export const RealEstateBackground: React.FC = () => {
         }
         return { ...motif, x, y, scale, rotate };
       });
-      setTick(t => t + 1);
       frame = requestAnimationFrame(animate);
     };
     frame = requestAnimationFrame(animate);

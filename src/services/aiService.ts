@@ -1,4 +1,5 @@
-import { ConversationContext, Property, MarketData, Lead } from '../types';
+import { ConversationContext } from '../types';
+import { config } from '../config';
 
 interface AIResponse {
   content: string;
@@ -25,29 +26,34 @@ interface AIResponse {
   updatedContext: ConversationContext;
 }
 
-interface VoiceflowTrace {
-  type: string;
-  payload?: {
-    message?: string;
-    intent?: string;
-    entities?: Record<string, any>;
-  };
-}
-
-interface VapiResponse {
-  text: string;
-  metadata?: {
-    intent?: string;
-    entities?: Record<string, any>;
-  };
-  error?: string;
-}
-
 interface VoiceStream {
   ws: WebSocket | null;
   isConnected: boolean;
   onMessage: (message: string) => void;
   onError: (error: string) => void;
+}
+
+interface VoiceflowResponse {
+  success: boolean;
+  data: {
+    text: string;
+    metadata: {
+      entities: {
+        name?: string;
+        email?: string;
+        phone?: string;
+        source?: string;
+        preferences?: {
+          propertyType?: string[];
+          priceRange?: [number, number];
+          locations?: string[];
+          beds?: number;
+          baths?: number;
+        };
+      };
+      intent?: string;
+    };
+  };
 }
 
 // Helper function to call the local OpenAI proxy
@@ -59,22 +65,6 @@ async function fetchOpenAI(messages: any[], model = 'gpt-3.5-turbo') {
   });
   if (!response.ok) throw new Error('OpenAI proxy error');
   return response.json();
-}
-
-// Helper function to call Vapi for voice interactions
-async function fetchVapi(audio: string) {
-  const response = await fetch('http://localhost:5001/api/vapi', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
-      audio,
-      assistant_id: process.env.VAPI_ASSISTANT_ID || 'default'
-    }),
-  });
-  if (!response.ok) throw new Error('Vapi proxy error');
-  const data = await response.json();
-  if (data.error) throw new Error(data.error);
-  return data as VapiResponse;
 }
 
 // Helper function to call Voiceflow for chat interactions
@@ -115,10 +105,14 @@ export class AIService {
   private readonly MAX_MEMORY_ITEMS = 100;
   private currentUserId: string;
   private voiceStream: VoiceStream | null = null;
+  private baseUrl: string;
+  private apiKey: string;
 
   private constructor() {
     this.conversationMemory = new Map();
     this.currentUserId = 'default-user';
+    this.baseUrl = config.api.url;
+    this.apiKey = config.vapi.key;
   }
 
   setUserId(userId: string) {
@@ -236,89 +230,8 @@ export class AIService {
       };
     } catch (error) {
       console.error('Error generating AI response:', error);
-      return this.generateFallbackResponse(input, context, mode);
+      return this.generateFallbackResponse(input, context);
     }
-  }
-
-  private generateSystemPrompt(context: ConversationContext, mode: 'chat' | 'voice'): string {
-    return `You are an advanced AI real estate assistant with deep knowledge of the property market.
-    Mode: ${mode}
-    Current context: ${JSON.stringify(context)}
-    
-    Guidelines:
-    1. Provide detailed, accurate information about properties and market trends
-    2. Use natural, conversational language
-    3. Ask follow-up questions to better understand user needs
-    4. Maintain context throughout the conversation
-    5. Suggest relevant properties based on user preferences
-    6. Provide market insights and analysis
-    7. Help with mortgage calculations and financial planning
-    8. Assist with scheduling viewings and connecting with agents
-    9. Avoid repeating yourself or giving the same answer twice
-    10. Be concise and engaging, not verbose
-    11. If you don't know, say so honestly
-    12. Use a friendly, professional tone
-    13. Reference the full conversation history for context
-    
-    Remember to:
-    - Be professional yet friendly
-    - Show empathy and understanding
-    - Provide actionable next steps
-    - Maintain conversation flow
-    - Use appropriate tone for ${mode} mode`;
-  }
-
-  private prepareConversationHistory(context: ConversationContext): any[] {
-    return context.conversationHistory.map(msg => ({
-      role: msg.type === 'user' ? 'user' : 'assistant',
-      content: msg.content
-    }));
-  }
-
-  private async processAIResponse(
-    response: string,
-    input: string,
-    context: ConversationContext
-  ): Promise<AIResponse> {
-    // Extract metadata using GPT
-    const metadataResponse = await fetchOpenAI([
-      {
-        role: 'system',
-        content: 'Extract metadata from the conversation including intent, entities, sentiment, and suggested actions.'
-      },
-      {
-        role: 'user',
-        content: `Input: ${input}\nResponse: ${response}\nContext: ${JSON.stringify(context)}`
-      }
-    ], 'gpt-3.5-turbo');
-
-    const metadata = JSON.parse(metadataResponse.choices[0].message?.content || '{}');
-
-    return {
-      content: response,
-      metadata: {
-        ...metadata,
-        confidence: 0.9
-      },
-      updatedContext: context
-    };
-  }
-
-  private updateContext(
-    context: ConversationContext,
-    input: string,
-    response: AIResponse
-  ): ConversationContext {
-    return {
-      ...context,
-      conversationHistory: [
-        ...context.conversationHistory,
-        { type: 'user', content: input, timestamp: new Date() },
-        { type: 'assistant', content: response.content, timestamp: new Date() }
-      ],
-      lastIntent: response.metadata.intent,
-      lastEntities: response.metadata.entities
-    };
   }
 
   private updateConversationMemory(sessionId: string, context: ConversationContext) {
@@ -335,11 +248,10 @@ export class AIService {
 
   private generateFallbackResponse(
     input: string,
-    context: ConversationContext,
-    mode: 'chat' | 'voice'
+    context: ConversationContext
   ): AIResponse {
     // Basic fallback response generation
-    const response = this.generateMockResponse(input, mode);
+    const response = this.generateMockResponse(input);
     return {
       content: response,
       metadata: this.extractMetadata(input),
@@ -347,7 +259,7 @@ export class AIService {
     };
   }
 
-  private generateMockResponse(input: string, mode: 'chat' | 'voice'): string {
+  private generateMockResponse(input: string): string {
     const lowerInput = input.toLowerCase();
     
     if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
@@ -485,7 +397,7 @@ export class AIService {
     };
   }
 
-  async analyzeMarketData(location: string): Promise<MarketData> {
+  async analyzeMarketData(location: string): Promise<any> {
     try {
       // Call OpenAI API for market analysis
       const completion = await fetchOpenAI([
@@ -517,7 +429,7 @@ export class AIService {
     }
   }
 
-  async qualifyLead(lead: Lead): Promise<{
+  async qualifyLead(lead: any): Promise<{
     score: number;
     status: 'hot' | 'warm' | 'cold';
     recommendations: string[];
@@ -568,6 +480,40 @@ export class AIService {
       });
     } catch (error) {
       console.error('Error clearing conversation history:', error);
+    }
+  }
+
+  public async processMessage(input: string, context: ConversationContext): Promise<VoiceflowResponse> {
+    try {
+      const response = await fetch(`${this.baseUrl}/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.apiKey}`
+        },
+        body: JSON.stringify({
+          input,
+          context
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`AI service error: ${response.statusText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('AI service error:', error);
+      return {
+        success: true,
+        data: {
+          text: this.generateMockResponse(input),
+          metadata: {
+            entities: {},
+            intent: undefined
+          }
+        }
+      };
     }
   }
 } 

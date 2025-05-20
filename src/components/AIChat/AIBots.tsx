@@ -21,44 +21,42 @@ interface AIBotsProps {
 }
 
 export const AIBots: React.FC<AIBotsProps> = ({ onLeadCaptured }) => {
-  const [openMode, setOpenMode] = useState<null | 'chat' | 'voice'>(null);
+  const [showChatbot, setShowChatbot] = useState(false);
+  const [showVoicebot, setShowVoicebot] = useState(false);
 
-  // Only one window open at a time
-  const handleClose = () => setOpenMode(null);
+  const handleClose = () => {
+    setShowChatbot(false);
+    setShowVoicebot(false);
+  };
 
   return (
-    <>
-      {/* Floating Chat Button */}
-      {openMode !== 'chat' && openMode !== 'voice' && (
-        <>
+    <div className="fixed bottom-4 right-4 flex flex-col space-y-4">
+      {!showChatbot && !showVoicebot && (
+        <div className="flex space-x-4">
           <button
-            onClick={() => setOpenMode('chat')}
-            className="fixed bottom-4 right-24 w-16 h-16 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110 z-50"
-            aria-label="Open text chat"
+            onClick={() => setShowChatbot(true)}
+            className="p-4 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors shadow-lg"
+            aria-label="Open chat"
           >
-            <MessageSquare className="w-8 h-8 text-white" />
+            <MessageSquare className="w-6 h-6" />
           </button>
           <button
-            onClick={() => setOpenMode('voice')}
-            className="fixed bottom-4 right-4 w-16 h-16 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110 z-50"
-            aria-label="Open voice chat"
+            onClick={() => setShowVoicebot(true)}
+            className="p-4 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors shadow-lg"
+            aria-label="Open voice assistant"
           >
-            <Mic className="w-8 h-8 text-white" />
+            <Mic className="w-6 h-6" />
           </button>
-        </>
-      )}
-      {/* Chatbot Dialog */}
-      {openMode === 'chat' && (
-        <div className="fixed bottom-4 right-24 z-50">
-          <Chatbot onLeadCaptured={onLeadCaptured} onClose={handleClose} />
         </div>
       )}
-      {/* Voicebot Dialog */}
-      {openMode === 'voice' && (
-        <div className="fixed bottom-4 right-4 z-50">
-          <Voicebot onLeadCaptured={onLeadCaptured} onClose={handleClose} />
-        </div>
+
+      {showChatbot && (
+        <Chatbot onLeadCaptured={onLeadCaptured} onClose={handleClose} />
       )}
-    </>
+
+      {showVoicebot && (
+        <Voicebot onClose={handleClose} />
+      )}
+    </div>
   );
 }; 

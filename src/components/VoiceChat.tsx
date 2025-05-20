@@ -109,7 +109,7 @@ export const VoiceChat: React.FC<VoiceChatProps> = ({ context, onContextUpdate }
         {isListening ? 'Stop Listening' : 'Start Listening'}
       </button>
 
-      <style jsx>{`
+      <style>{`
         .voice-chat-container {
           display: flex;
           flex-direction: column;

@@ -1,318 +1,300 @@
-import React, { useState, useEffect } from 'react';
-import { LeadService } from '../../services/leadService';
-import { Lead } from '../../types';
+import React, { useState } from 'react';
 import {
-  Search,
-  Filter,
-  Star,
   Phone,
   Mail,
-  Calendar,
-  MessageSquare,
-  Eye,
+  User,
+  Clock,
+  Filter,
+  Search,
+  Plus,
+  Edit2,
   Trash2,
-  ChevronDown,
-  ChevronUp,
-  ChevronRight
+  Save,
+  X
 } from 'lucide-react';
 
-interface LeadManagerProps {
-  onLeadSelect?: (lead: Lead) => void;
+interface Lead {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  status: 'new' | 'contacted' | 'qualified' | 'proposal' | 'closed';
+  source: 'website' | 'chatbot' | 'voicebot' | 'referral' | 'other';
+  lastContact: Date;
+  interactions: Interaction[];
+  notes: string;
 }
 
-export const LeadManager: React.FC<LeadManagerProps> = ({ onLeadSelect }) => {
+interface Interaction {
+  type: 'chat' | 'call' | 'email' | 'viewing';
+  date: Date;
+  notes?: string;
+}
+
+export const LeadManager: React.FC = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [filters, setFilters] = useState({
-    status: '',
-    source: '',
-    search: ''
-  });
-  const [showFilters, setShowFilters] = useState(false);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
-  const [qualification, setQualification] = useState<{
-    score: number;
-    status: 'hot' | 'warm' | 'cold';
-    recommendations: string[];
-  } | null>(null);
-
-  const leadService = LeadService.getInstance();
-
-  useEffect(() => {
-    loadLeads();
-  }, [filters]);
-
-  const loadLeads = async () => {
-    try {
-      setLoading(true);
-      const response = await leadService.getLeads({
-        status: filters.status as Lead['status'],
-        source: filters.source as Lead['source']
-      });
-      setLeads(response.leads);
-      setError(null);
-    } catch (err) {
-      setError('Failed to load leads');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleLeadSelect = async (lead: Lead) => {
-    setSelectedLead(lead);
-    try {
-      const qual = await leadService.qualifyLead(lead.id);
-      setQualification(qual);
-    } catch (err) {
-      console.error('Failed to qualify lead:', err);
-    }
-    onLeadSelect?.(lead);
-  };
-
-  const handleDeleteLead = async (leadId: string) => {
-    try {
-      await leadService.deleteLead(leadId);
-      setLeads(leads.filter(lead => lead.id !== leadId));
-      if (selectedLead?.id === leadId) {
-        setSelectedLead(null);
-        setQualification(null);
-      }
-    } catch (err) {
-      console.error('Failed to delete lead:', err);
-    }
-  };
+  const [isEditing, setIsEditing] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState<string>('all');
 
   const filteredLeads = leads.filter(lead => {
-    const matchesSearch = filters.search === '' ||
-      lead.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-      lead.email.toLowerCase().includes(filters.search.toLowerCase()) ||
-      (lead.phone || '').includes(filters.search);
-    
-    const matchesStatus = filters.status === '' || lead.status === filters.status;
-    const matchesSource = filters.source === '' || lead.source === filters.source;
-
-    return matchesSearch && matchesStatus && matchesSource;
+    const matchesSearch = lead.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      lead.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = filterStatus === 'all' || lead.status === filterStatus;
+    return matchesSearch && matchesStatus;
   });
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'hot': return 'bg-red-100 text-red-800';
-      case 'warm': return 'bg-yellow-100 text-yellow-800';
-      case 'cold': return 'bg-blue-100 text-blue-800';
-      default: return 'bg-gray-100 text-gray-800';
+  const handleAddLead = () => {
+    const newLead: Lead = {
+      id: `lead-${Date.now()}`,
+      name: '',
+      email: '',
+      phone: '',
+      status: 'new',
+      source: 'website',
+      lastContact: new Date(),
+      interactions: [],
+      notes: ''
+    };
+    setLeads([...leads, newLead]);
+    setSelectedLead(newLead);
+    setIsEditing(true);
+  };
+
+  const handleSaveLead = (updatedLead: Lead) => {
+    if (selectedLead) {
+      setLeads(leads.map(lead => lead.id === selectedLead.id ? updatedLead : lead));
+      setSelectedLead(updatedLead);
+      setIsEditing(false);
     }
   };
 
-  const getSourceIcon = (source: string) => {
-    switch (source) {
-      case 'website': return <Eye className="w-4 h-4" />;
-      case 'chatbot': return <MessageSquare className="w-4 h-4" />;
-      case 'voicebot': return <Phone className="w-4 h-4" />;
-      case 'email': return <Mail className="w-4 h-4" />;
-      default: return <Star className="w-4 h-4" />;
+  const handleDeleteLead = (leadId: string) => {
+    setLeads(leads.filter(lead => lead.id !== leadId));
+    if (selectedLead?.id === leadId) {
+      setSelectedLead(null);
+      setIsEditing(false);
     }
   };
 
   return (
     <div className="flex h-full">
-      {/* Lead List */}
-      <div className="w-1/2 border-r border-gray-200 p-4">
-        <div className="mb-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search leads..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={filters.search}
-                onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-              />
-            </div>
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-            >
-              <Filter className="w-4 h-4" />
-            </button>
-          </div>
-
-          {showFilters && (
-            <div className="grid grid-cols-2 gap-2 mb-4">
-              <select
-                className="border border-gray-300 rounded-lg p-2"
-                value={filters.status}
-                onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-              >
-                <option value="">All Status</option>
-                <option value="new">New</option>
-                <option value="contacted">Contacted</option>
-                <option value="qualified">Qualified</option>
-                <option value="converted">Converted</option>
-              </select>
-              <select
-                className="border border-gray-300 rounded-lg p-2"
-                value={filters.source}
-                onChange={(e) => setFilters(prev => ({ ...prev, source: e.target.value }))}
-              >
-                <option value="">All Sources</option>
-                <option value="website">Website</option>
-                <option value="chatbot">Chatbot</option>
-                <option value="voicebot">Voicebot</option>
-                <option value="email">Email</option>
-                <option value="referral">Referral</option>
-              </select>
-            </div>
-          )}
+      {/* Leads List */}
+      <div className="w-1/3 border-r p-4">
+        <div className="mb-4 flex justify-between items-center">
+          <h2 className="text-xl font-semibold">Leads</h2>
+          <button
+            onClick={handleAddLead}
+            className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+          >
+            <Plus className="w-5 h-5" />
+          </button>
         </div>
 
-        {loading ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        <div className="mb-4 space-y-2">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Search leads..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10 w-full p-2 border rounded-lg"
+            />
           </div>
-        ) : error ? (
-          <div className="text-red-500 text-center">{error}</div>
-        ) : (
-          <div className="space-y-2">
-            {filteredLeads.map(lead => (
-              <div
-                key={lead.id}
-                className={`p-4 border rounded-lg cursor-pointer hover:bg-gray-50 ${
-                  selectedLead?.id === lead.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
-                }`}
-                onClick={() => handleLeadSelect(lead)}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    {getSourceIcon(lead.source)}
-                    <div>
-                      <h3 className="font-medium">{lead.name}</h3>
-                      <p className="text-sm text-gray-500">{lead.email}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(lead.status)}`}>
-                      {lead.status}
-                    </span>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleDeleteLead(lead.id);
-                      }}
-                      className="p-1 hover:bg-red-100 rounded-full"
-                    >
-                      <Trash2 className="w-4 h-4 text-red-500" />
-                    </button>
-                  </div>
+
+          <div className="flex items-center space-x-2">
+            <Filter className="text-gray-400 w-5 h-5" />
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="p-2 border rounded-lg flex-grow"
+            >
+              <option value="all">All Status</option>
+              <option value="new">New</option>
+              <option value="contacted">Contacted</option>
+              <option value="qualified">Qualified</option>
+              <option value="proposal">Proposal</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          {filteredLeads.map(lead => (
+            <div
+              key={lead.id}
+              className={`p-3 border rounded-lg cursor-pointer hover:bg-gray-50 ${
+                selectedLead?.id === lead.id ? 'border-indigo-500 bg-indigo-50' : ''
+              }`}
+              onClick={() => {
+                setSelectedLead(lead);
+                setIsEditing(false);
+              }}
+            >
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-medium">{lead.name}</h3>
+                  <p className="text-sm text-gray-600">{lead.email}</p>
                 </div>
+                <span className={`px-2 py-1 text-xs rounded-full ${
+                  lead.status === 'new' ? 'bg-blue-100 text-blue-800' :
+                  lead.status === 'contacted' ? 'bg-yellow-100 text-yellow-800' :
+                  lead.status === 'qualified' ? 'bg-green-100 text-green-800' :
+                  lead.status === 'proposal' ? 'bg-purple-100 text-purple-800' :
+                  'bg-gray-100 text-gray-800'
+                }`}>
+                  {lead.status}
+                </span>
               </div>
-            ))}
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Lead Details */}
-      <div className="w-1/2 p-4">
+      <div className="flex-1 p-4">
         {selectedLead ? (
           <div>
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold mb-2">{selectedLead.name}</h2>
-              <div className="flex items-center space-x-4 text-gray-500">
-                <div className="flex items-center">
-                  <Mail className="w-4 h-4 mr-1" />
-                  {selectedLead.email}
-                </div>
-                <div className="flex items-center">
-                  <Phone className="w-4 h-4 mr-1" />
-                  {selectedLead.phone}
-                </div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Lead Details</h2>
+              <div className="space-x-2">
+                {isEditing ? (
+                  <>
+                    <button
+                      onClick={() => handleSaveLead(selectedLead)}
+                      className="p-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                    >
+                      <Save className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => setIsEditing(false)}
+                      className="p-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => setIsEditing(true)}
+                      className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+                    >
+                      <Edit2 className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteLead(selectedLead.id)}
+                      className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                    >
+                      <Trash2 className="w-5 h-5" />
+                    </button>
+                  </>
+                )}
               </div>
             </div>
 
-            {qualification && (
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-2">Lead Qualification</h3>
-                <div className="bg-white rounded-lg border border-gray-200 p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-sm text-gray-500">Score</span>
-                      <div className="text-2xl font-bold">{qualification.score}</div>
-                    </div>
-                    <div>
-                      <span className="text-sm text-gray-500">Status</span>
-                      <div className={`text-lg font-semibold ${getStatusColor(qualification.status)}`}>
-                        {qualification.status}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-2">Recommendations</h4>
-                    <ul className="space-y-2">
-                      {qualification.recommendations.map((rec, index) => (
-                        <li key={index} className="flex items-center text-sm">
-                          <ChevronRight className="w-4 h-4 mr-2 text-gray-400" />
-                          {rec}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-2">Preferences</h3>
+            <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <span className="text-sm text-gray-500">Property Type</span>
-                  <div className="font-medium">
-                    {selectedLead.preferences?.propertyType?.join(', ')}
-                  </div>
+                <div className="flex items-center space-x-2">
+                  <User className="text-gray-400 w-5 h-5" />
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={selectedLead.name}
+                      onChange={(e) => setSelectedLead({ ...selectedLead, name: e.target.value })}
+                      className="p-2 border rounded-lg flex-grow"
+                    />
+                  ) : (
+                    <span>{selectedLead.name}</span>
+                  )}
                 </div>
-                <div>
-                  <span className="text-sm text-gray-500">Price Range</span>
-                  <div className="font-medium">
-                    ${selectedLead.preferences?.priceRange?.[0].toLocaleString()} - $
-                    {selectedLead.preferences?.priceRange?.[1].toLocaleString()}
-                  </div>
+
+                <div className="flex items-center space-x-2">
+                  <Mail className="text-gray-400 w-5 h-5" />
+                  {isEditing ? (
+                    <input
+                      type="email"
+                      value={selectedLead.email}
+                      onChange={(e) => setSelectedLead({ ...selectedLead, email: e.target.value })}
+                      className="p-2 border rounded-lg flex-grow"
+                    />
+                  ) : (
+                    <span>{selectedLead.email}</span>
+                  )}
                 </div>
-                <div>
-                  <span className="text-sm text-gray-500">Locations</span>
-                  <div className="font-medium">
-                    {selectedLead.preferences?.locations?.join(', ')}
-                  </div>
+
+                <div className="flex items-center space-x-2">
+                  <Phone className="text-gray-400 w-5 h-5" />
+                  {isEditing ? (
+                    <input
+                      type="tel"
+                      value={selectedLead.phone}
+                      onChange={(e) => setSelectedLead({ ...selectedLead, phone: e.target.value })}
+                      className="p-2 border rounded-lg flex-grow"
+                    />
+                  ) : (
+                    <span>{selectedLead.phone}</span>
+                  )}
                 </div>
-                <div>
-                  <span className="text-sm text-gray-500">Beds/Baths</span>
-                  <div className="font-medium">
-                    {selectedLead.preferences?.beds} beds, {selectedLead.preferences?.baths} baths
-                  </div>
+
+                <div className="flex items-center space-x-2">
+                  <Clock className="text-gray-400 w-5 h-5" />
+                  <span>Last Contact: {selectedLead.lastContact.toLocaleDateString()}</span>
                 </div>
               </div>
-            </div>
 
-            <div>
-              <h3 className="text-lg font-semibold mb-2">Interactions</h3>
-              <div className="space-y-2">
+              <div>
+                <h3 className="font-medium mb-2">Status</h3>
+                {isEditing ? (
+                  <select
+                    value={selectedLead.status}
+                    onChange={(e) => setSelectedLead({ ...selectedLead, status: e.target.value as Lead['status'] })}
+                    className="p-2 border rounded-lg w-full"
+                  >
+                    <option value="new">New</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="qualified">Qualified</option>
+                    <option value="proposal">Proposal</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                ) : (
+                  <span className={`px-3 py-1 rounded-full ${
+                    selectedLead.status === 'new' ? 'bg-blue-100 text-blue-800' :
+                    selectedLead.status === 'contacted' ? 'bg-yellow-100 text-yellow-800' :
+                    selectedLead.status === 'qualified' ? 'bg-green-100 text-green-800' :
+                    selectedLead.status === 'proposal' ? 'bg-purple-100 text-purple-800' :
+                    'bg-gray-100 text-gray-800'
+                  }`}>
+                    {selectedLead.status}
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <h3 className="font-medium mb-2">Notes</h3>
+                {isEditing ? (
+                  <textarea
+                    value={selectedLead.notes}
+                    onChange={(e) => setSelectedLead({ ...selectedLead, notes: e.target.value })}
+                    className="p-2 border rounded-lg w-full h-32"
+                  />
+                ) : (
+                  <p className="text-gray-600">{selectedLead.notes}</p>
+                )}
+              </div>
+
+              <div>
+                <h3 className="font-medium mb-2">Interactions</h3>
                 {selectedLead.interactions.map((interaction, index) => (
-                  <div key={index} className="flex items-start space-x-2 p-2 bg-gray-50 rounded">
-                    <div className="mt-1">
-                      {interaction.type === 'chat' && <MessageSquare className="w-4 h-4" />}
-                      {interaction.type === 'call' && <Phone className="w-4 h-4" />}
-                      {interaction.type === 'email' && <Mail className="w-4 h-4" />}
-                      {interaction.type === 'viewing' && <Eye className="w-4 h-4" />}
+                  <div key={index} className="mb-2 p-2 bg-gray-50 rounded-lg">
+                    <div className="flex justify-between">
+                      <span className="font-medium">{interaction.type}</span>
+                      <span className="text-gray-600">{interaction.date.toLocaleDateString()}</span>
                     </div>
-                    <div>
-                      <div className="text-sm font-medium capitalize">{interaction.type}</div>
-                      {interaction.notes && (
-                        <div className="text-sm text-gray-500">{interaction.notes}</div>
-                      )}
-                      <div className="text-xs text-gray-400">
-                        {new Date(interaction.timestamp).toLocaleString()}
-                      </div>
-                    </div>
+                    {interaction.notes && (
+                      <p className="text-sm text-gray-600 mt-1">{interaction.notes}</p>
+                    )}
                   </div>
                 ))}
               </div>

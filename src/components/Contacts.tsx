@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { contactService } from '../services/airtableService';
-import { CONTACT_FIELDS } from '../config/airtable';
 
 interface Contact {
   id: string;
@@ -21,13 +20,6 @@ interface ContactFormData {
   Company: string;
   Status: 'New' | 'Contacted' | 'Qualified' | 'Proposal' | 'Closed';
   Notes?: string;
-}
-
-interface ContactService {
-  getAll: () => Promise<Contact[]>;
-  create: (data: ContactFormData) => Promise<Contact>;
-  update: (id: string, data: ContactFormData) => Promise<Contact>;
-  delete: (id: string) => Promise<void>;
 }
 
 export default function Contacts() {

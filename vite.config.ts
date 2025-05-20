@@ -23,7 +23,10 @@ export default defineConfig(({ mode }) => {
       'process.env': env
     },
     server: {
-      port: 3000
+      port: 3000,
+      proxy: {
+        '/api': 'http://localhost:5001',
+      },
     },
     resolve: {
       alias: {

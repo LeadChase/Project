@@ -1,0 +1,135 @@
+.quick-signup {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.quick-signup h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.quick-signup p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.signup-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.email-input {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.submit-button {
+  padding: 1rem 2rem;
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #4f46e5;
+}
+
+.submit-button:disabled {
+  background-color: #a5a6f6;
+  cursor: not-allowed;
+}
+
+.disclaimer {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+/* Request Demo Form Styles */
+.request-demo {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.request-demo h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.demo-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.message {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.message.success {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #16a34a;
+}
+
+.message.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #dc2626;
+} 

@@ -1,11 +1,7 @@
-import { Property, MarketData } from '../types';
-
 export class RealEstateService {
   private static instance: RealEstateService;
-  private baseUrl: string;
 
   private constructor() {
-    this.baseUrl = import.meta.env.VITE_REAL_ESTATE_API_URL || 'https://api.example.com';
   }
 
   static getInstance(): RealEstateService {
@@ -24,14 +20,14 @@ export class RealEstateService {
     page?: number;
     limit?: number;
   }): Promise<{
-    properties: Property[];
+    properties: any[];
     total: number;
     page: number;
     limit: number;
   }> {
     try {
       // In production, make actual API call
-      const mockProperties: Property[] = [
+      const mockProperties: any[] = [
         {
           id: '1',
           address: '123 Main St',
@@ -65,7 +61,7 @@ export class RealEstateService {
     }
   }
 
-  async getMarketData(location: string): Promise<MarketData> {
+  async getMarketData(): Promise<any> {
     try {
       // In production, make actual API call
       return {
@@ -82,7 +78,7 @@ export class RealEstateService {
     }
   }
 
-  async getPropertyDetails(propertyId: string): Promise<Property> {
+  async getPropertyDetails(propertyId: string): Promise<any> {
     try {
       // In production, make actual API call
       return {
@@ -110,29 +106,17 @@ export class RealEstateService {
     }
   }
 
-  async scheduleViewing(propertyId: string, date: Date, contactInfo: {
-    name: string;
-    email: string;
-    phone?: string;
-  }): Promise<{
-    success: boolean;
-    viewingId: string;
-    confirmationCode: string;
-  }> {
+  async scheduleViewing(): Promise<void> {
     try {
       // In production, make actual API call
-      return {
-        success: true,
-        viewingId: 'viewing-123',
-        confirmationCode: 'ABC123'
-      };
+      return;
     } catch (error) {
       console.error('Error scheduling viewing:', error);
       throw new Error('Failed to schedule viewing');
     }
   }
 
-  async getSimilarProperties(propertyId: string): Promise<Property[]> {
+  async getSimilarProperties(): Promise<any[]> {
     try {
       // In production, make actual API call
       return [
@@ -162,19 +146,7 @@ export class RealEstateService {
     }
   }
 
-  async getNeighborhoodInfo(location: string): Promise<{
-    name: string;
-    description: string;
-    amenities: string[];
-    schools: {
-      name: string;
-      rating: number;
-      distance: number;
-    }[];
-    crimeRate: number;
-    walkScore: number;
-    transitScore: number;
-  }> {
+  async getNeighborhoodInfo(): Promise<any> {
     try {
       // In production, make actual API call
       return {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 
@@ -13,7 +13,6 @@ export const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,9 +41,6 @@ export const Navbar: React.FC = () => {
       document.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
-
-  // Only show the transparent background on the home page
-  const isHomePage = location.pathname === '/';
 
   return (
     <nav
@@ -182,39 +178,3 @@ export const Navbar: React.FC = () => {
     </nav>
   );
 };
-
-// Add this to your global CSS file or add it inline here
-// Define new animation
-const styles = `
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.animate-fadeDown {
-  animation: fadeDown 0.3s ease-out forwards;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.85;
-  }
-}
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-`;
-
-// Inject the styles
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = styles;
-document.head.appendChild(styleSheet);

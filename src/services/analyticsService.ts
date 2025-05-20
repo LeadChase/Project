@@ -1,5 +1,3 @@
-import { Lead } from '../types';
-
 interface LeadMetrics {
   totalLeads: number;
   leadsBySource: Record<string, number>;
@@ -14,17 +12,10 @@ interface LeadMetrics {
   };
 }
 
-interface TimeRange {
-  start: Date;
-  end: Date;
-}
-
 export class AnalyticsService {
   private static instance: AnalyticsService;
-  private baseUrl: string;
 
   private constructor() {
-    this.baseUrl = import.meta.env.VITE_ANALYTICS_API_URL || 'https://api.example.com';
   }
 
   static getInstance(): AnalyticsService {
@@ -34,7 +25,7 @@ export class AnalyticsService {
     return AnalyticsService.instance;
   }
 
-  async getLeadMetrics(timeRange: TimeRange): Promise<LeadMetrics> {
+  async getLeadMetrics(): Promise<LeadMetrics> {
     try {
       // In production, make actual API call
       return {
@@ -72,7 +63,7 @@ export class AnalyticsService {
     }
   }
 
-  async getLeadTrends(timeRange: TimeRange): Promise<{
+  async getLeadTrends(): Promise<{
     dailyLeads: { date: string; count: number }[];
     conversionTrend: { date: string; rate: number }[];
     qualityTrend: { date: string; hot: number; warm: number; cold: number }[];
@@ -102,7 +93,7 @@ export class AnalyticsService {
     }
   }
 
-  async getSourcePerformance(timeRange: TimeRange): Promise<{
+  async getSourcePerformance(): Promise<{
     source: string;
     totalLeads: number;
     conversionRate: number;
@@ -140,7 +131,7 @@ export class AnalyticsService {
     }
   }
 
-  async getAgentPerformance(timeRange: TimeRange): Promise<{
+  async getAgentPerformance(): Promise<{
     agentId: string;
     agentName: string;
     totalLeads: number;
@@ -174,7 +165,7 @@ export class AnalyticsService {
     }
   }
 
-  async generateReport(timeRange: TimeRange): Promise<{
+  async generateReport(): Promise<{
     summary: LeadMetrics;
     trends: any;
     sourcePerformance: any;
@@ -183,18 +174,16 @@ export class AnalyticsService {
   }> {
     try {
       const [summary, trends, sourcePerformance, agentPerformance] = await Promise.all([
-        this.getLeadMetrics(timeRange),
-        this.getLeadTrends(timeRange),
-        this.getSourcePerformance(timeRange),
-        this.getAgentPerformance(timeRange)
+        this.getLeadMetrics(),
+        this.getLeadTrends(),
+        this.getSourcePerformance(),
+        this.getAgentPerformance()
       ]);
 
       // Generate recommendations based on the data
       const recommendations = this.generateRecommendations(
         summary,
-        trends,
-        sourcePerformance,
-        agentPerformance
+        sourcePerformance
       );
 
       return {
@@ -212,9 +201,7 @@ export class AnalyticsService {
 
   private generateRecommendations(
     summary: LeadMetrics,
-    trends: any,
-    sourcePerformance: any,
-    agentPerformance: any
+    sourcePerformance: any
   ): string[] {
     const recommendations: string[] = [];
 
@@ -224,10 +211,12 @@ export class AnalyticsService {
     }
 
     // Analyze source performance
-    const bestSource = sourcePerformance.reduce((a: any, b: any) => 
-      a.conversionRate > b.conversionRate ? a : b
-    );
-    recommendations.push(`Increase investment in ${bestSource.source} channel`);
+    if (sourcePerformance && sourcePerformance.length) {
+      const bestSource = sourcePerformance.reduce((a: any, b: any) => 
+        a.conversionRate > b.conversionRate ? a : b
+      );
+      recommendations.push(`Increase investment in ${bestSource.source} channel`);
+    }
 
     // Analyze response times
     if (summary.averageResponseTime > 2) {

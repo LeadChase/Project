@@ -18,9 +18,7 @@ import {
 import {
   TrendingUp,
   Users,
-  DollarSign,
   Clock,
-  MapPin,
   Star,
   Download,
   Calendar
@@ -90,7 +88,7 @@ export const AnalyticsDashboard: React.FC = () => {
   const loadReport = async () => {
     try {
       setLoading(true);
-      const data = await analyticsService.generateReport(timeRange);
+      const data = await analyticsService.generateReport();
       setReport(data as AnalyticsReport);
       setError(null);
     } catch (err) {

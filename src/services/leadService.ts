@@ -1,11 +1,7 @@
-import { Lead } from '../types';
-
 export class LeadService {
   private static instance: LeadService;
-  private baseUrl: string;
 
   private constructor() {
-    this.baseUrl = import.meta.env.VITE_LEAD_API_URL || 'https://api.example.com';
   }
 
   static getInstance(): LeadService {
@@ -15,10 +11,10 @@ export class LeadService {
     return LeadService.instance;
   }
 
-  async createLead(lead: Omit<Lead, 'id' | 'createdAt' | 'status'>): Promise<Lead> {
+  async createLead(lead: Omit<any, 'id' | 'createdAt' | 'status'>): Promise<any> {
     try {
       // In production, make actual API call
-      const newLead: Lead = {
+      const newLead: any = {
         id: `lead-${Date.now()}`,
         ...lead,
         status: 'new',
@@ -33,7 +29,7 @@ export class LeadService {
     }
   }
 
-  async updateLead(leadId: string, updates: Partial<Lead>): Promise<Lead> {
+  async updateLead(leadId: string, updates: Partial<any>): Promise<any> {
     try {
       // In production, make actual API call
       const lead = await this.getLead(leadId);
@@ -50,7 +46,7 @@ export class LeadService {
     }
   }
 
-  async getLead(leadId: string): Promise<Lead> {
+  async getLead(leadId: string): Promise<any> {
     try {
       // In production, make actual API call
       return {
@@ -80,7 +76,7 @@ export class LeadService {
   async addInteraction(leadId: string, interaction: {
     type: 'chat' | 'call' | 'email' | 'viewing';
     notes?: string;
-  }): Promise<Lead> {
+  }): Promise<any> {
     try {
       const lead = await this.getLead(leadId);
       const updatedLead = {
@@ -121,7 +117,7 @@ export class LeadService {
         'referral': 25,
         'other': 5
       };
-      score += sourceWeights[lead.source] || 0;
+      score += (sourceWeights as any)[lead.source] || 0;
 
       // Interaction weight
       const interactionWeights = {
@@ -130,8 +126,8 @@ export class LeadService {
         'email': 5,
         'viewing': 20
       };
-      lead.interactions.forEach(interaction => {
-        score += interactionWeights[interaction.type] || 0;
+      lead.interactions.forEach((interaction: any) => {
+        score += (interactionWeights as any)[interaction.type] || 0;
       });
 
       // Preference completeness weight
@@ -174,19 +170,19 @@ export class LeadService {
   }
 
   async getLeads(params: {
-    status?: Lead['status'];
-    source?: Lead['source'];
+    status?: any['status'];
+    source?: any['source'];
     page?: number;
     limit?: number;
   }): Promise<{
-    leads: Lead[];
+    leads: any[];
     total: number;
     page: number;
     limit: number;
   }> {
     try {
       // In production, make actual API call
-      const mockLeads: Lead[] = [
+      const mockLeads: any[] = [
         {
           id: 'lead-1',
           name: 'John Doe',
