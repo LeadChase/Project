@@ -16,11 +16,7 @@
     "experimentalSpecifierResolution": "node"
   },
   "include": [
-    "src/server.ts",
-    "src/api/**/*",
-    "src/services/emailService.ts",
-    "src/services/formService.ts",
-    "src/services/waitlistService.ts"
+    "src/**/*"
   ],
   "exclude": ["src/**/*.test.ts", "node_modules"]
 } 
