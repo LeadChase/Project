@@ -2,8 +2,8 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send } from 'lucide-react';
-import { AIService } from '../../services/aiService';
-import { Message } from '../../types';
+import { AIService } from '../../services/aiService.js';
+import { Message } from '../../types.js';
 
 interface ChatbotProps {
   onLeadCaptured?: (leadData: {

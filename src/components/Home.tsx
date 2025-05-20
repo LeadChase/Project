@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { Hero } from './Hero';
-import { Features } from './Features';
-import { HowItWorks } from './HowItWorks';
-import { Testimonials } from './Testimonials';
-import { Pricing } from './Pricing';
-import { Contact } from './Contact';
-import { FeatureShowcase } from './FeatureShowcase';
-import { TrustedTools } from './TrustedTools';
+import { Hero } from './Hero.js';
+import { Features } from './Features.js';
+import { HowItWorks } from './HowItWorks.js';
+import { Testimonials } from './Testimonials.js';
+import { Pricing } from './Pricing.js';
+import { Contact } from './Contact.js';
+import { FeatureShowcase } from './FeatureShowcase.js';
+import { TrustedTools } from './TrustedTools.js';
 
 export function Home() {
   useEffect(() => {

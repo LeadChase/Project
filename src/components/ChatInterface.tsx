@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { AIService } from '../services/aiService';
-import { ConversationContext, Message } from '../types';
-import { VoiceChat } from './VoiceChat';
+import { AIService } from '../services/aiService.js';
+import { ConversationContext, Message } from '../types.js';
+import { VoiceChat } from './VoiceChat.js';
 
 export const ChatInterface: React.FC = () => {
   const [input, setInput] = useState('');

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Logo } from './Logo';
+import { Logo } from './Logo.js';
 import {
   Heart,
   Instagram,

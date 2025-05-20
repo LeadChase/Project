@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { dealService } from '../services/airtableService';
+import { dealService } from '../services/airtableService.js';
 
 interface Deal {
   id: string;

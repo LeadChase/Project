@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AnalyticsService } from '../../services/analyticsService';
+import { AnalyticsService } from '../../services/analyticsService.js';
 import { Download, Filter, Calendar } from 'lucide-react';
 
 export const LeadReports: React.FC = () => {

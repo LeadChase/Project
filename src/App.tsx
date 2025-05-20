@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
-import { Home } from './components/Home';
-import { About } from './components/About';
-import { Contact } from './components/Contact';
-import { Waitlist } from './components/Waitlist';
-import { Footer } from './components/Footer';
-import { Confirm } from './components/Confirm';
+import { Navbar } from './components/Navbar.js';
+import { Home } from './components/Home.js';
+import { About } from './components/About.js';
+import { Contact } from './components/Contact.js';
+import { Waitlist } from './components/Waitlist.js';
+import { Footer } from './components/Footer.js';
+import { Confirm } from './components/Confirm.js';
 
 function ScrollToTop() {
   const { pathname } = useLocation();

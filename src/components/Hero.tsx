@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Zap } from 'lucide-react';
-import { RealEstateBackground } from './RealEstateBackground';
+import { RealEstateBackground } from './RealEstateBackground.js';
 
 export const Hero: React.FC = () => {
   const [email, setEmail] = useState('');

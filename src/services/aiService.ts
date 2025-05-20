@@ -1,5 +1,5 @@
-import { ConversationContext } from '../types';
-import { config } from '../config';
+import { ConversationContext } from '../types.js';
+import { config } from '../config.js';
 
 interface AIResponse {
   content: string;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { Logo } from './Logo';
+import { Logo } from './Logo.js';
 
 const navLinks = [
   { name: 'Why LeadFlow?', href: '/#pain-points' },

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AIService } from '../services/aiService';
-import { ConversationContext, Message } from '../types';
+import { AIService } from '../services/aiService.js';
+import { ConversationContext, Message } from '../types.js';
 
 interface VoiceChatProps {
   context: ConversationContext;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { activityService } from '../services/airtableService';
+import { activityService } from '../services/airtableService.js';
 
 interface Activity {
   id: string;

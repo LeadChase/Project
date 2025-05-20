@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Chatbot } from './Chatbot';
-import { Voicebot } from './Voicebot';
+import { Chatbot } from './Chatbot.js';
+import { Voicebot } from './Voicebot.js';
 import { MessageSquare, Mic } from 'lucide-react';
 
 interface AIBotsProps {

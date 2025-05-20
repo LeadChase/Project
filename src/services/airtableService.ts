@@ -1,4 +1,4 @@
-import base, { TABLES } from '../config/airtable';
+import base, { TABLES } from '../config/airtable.js';
 
 // Contact operations
 export const contactService = {

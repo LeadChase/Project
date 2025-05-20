@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { contactService } from '../services/airtableService';
+import { contactService } from '../services/airtableService.js';
 
 interface Contact {
   id: string;

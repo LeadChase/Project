@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Volume2, X } from 'lucide-react';
-import { Message } from '../../types/index';
+import { Message } from '../../types/index.js';
 
 interface VoicebotProps {
   onClose: () => void;
