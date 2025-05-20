@@ -32,7 +32,7 @@ const RequestDemo: React.FC = () => {
     setMessage('');
 
     try {
-      const response = await fetch('/api/waitlist/request-demo', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/waitlist/request-demo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

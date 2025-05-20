@@ -13,7 +13,7 @@ export function Confirm() {
       return;
     }
 
-    fetch(`/api/waitlist/confirm?token=${token}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/waitlist/confirm?token=${token}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {

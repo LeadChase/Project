@@ -30,7 +30,7 @@ export function Waitlist() {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('/api/waitlist/join', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/waitlist/join`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
