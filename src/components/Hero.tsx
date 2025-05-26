@@ -59,14 +59,11 @@ export const Hero: React.FC = () => {
         {/* Main Heading - Refined spacing and responsive sizes */}
         <div className="max-w-[800px] mx-auto text-center mb-16">
           <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.25rem] font-bold text-gray-900 mb-6 md:mb-8 leading-[1.1] md:leading-[1.15] tracking-tight">
-            Transform Your Lead<br className="hidden sm:block" />
-            Management with<br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">AI-Powered</span> Automation
+            Convert More Raw Leads Into <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Appointments & Closings.</span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed px-4">
-            LeadFlow helps real estate agents <span className="font-medium">nurture leads automatically</span> across Email, 
-            SMS & Voice. Focus on what matters most — <span className="font-medium">closing deals</span>.
+            We help you automate your sales process using <span className="font-medium">conversational AI</span>, so you can <span className="font-medium">follow up with leads 24/7</span>, and get back to what you love the most. Being in the field, face to face, closing deals, and building relationships.
           </p>
         </div>
         
@@ -91,7 +88,7 @@ export const Hero: React.FC = () => {
                   {isSubmitting ? (
                     <div className="h-4 w-4 mx-auto rounded-full border-2 border-white border-t-transparent animate-spin"></div>
                   ) : (
-                    "Get Early Access"
+                    "Join The Waitlist & Save 50%"
                   )}
                 </button>
               </div>

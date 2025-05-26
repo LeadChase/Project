@@ -4,9 +4,9 @@ import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo.js';
 
 const navLinks = [
-  { name: 'Why LeadFlow?', href: '/#pain-points' },
-  { name: 'Smart Platform', href: '/#features' },
-  { name: 'Unlock Benefits', href: '/#perks' },
+  { name: 'Why LeadChoose', href: '/#differentiators' },
+  { name: 'How It Works', href: '/#how-it-works' },
+  { name: 'Free System Demo', href: '/freeSystemDemo#free-marketing-analysis' },
 ];
 
 export const Navbar: React.FC = () => {
