@@ -2,11 +2,10 @@ import { useEffect } from 'react';
 import { Hero } from './Hero.js';
 import { Features } from './Features.js';
 import { HowItWorks } from './HowItWorks.js';
-import { Testimonials } from './Testimonials.js';
-import { Pricing } from './Pricing.js';
 import { Contact } from './Contact.js';
 import { FeatureShowcase } from './FeatureShowcase.js';
 import { TrustedTools } from './TrustedTools.js';
+import {MakeDifferent} from './MakeDifferent.js'
 
 export function Home() {
   useEffect(() => {
@@ -23,10 +22,9 @@ export function Home() {
         <Hero />
         <Features />
         <HowItWorks />
-        <Testimonials />
         <FeatureShowcase />
+        <MakeDifferent />
         <TrustedTools />
-        <Pricing />
         <Contact />
       </main>
     </div>

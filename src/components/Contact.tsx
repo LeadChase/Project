@@ -1,35 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { SendIcon, Check } from 'lucide-react';
+import { SendIcon, Check, CheckCircle2 } from 'lucide-react'; // Added Gift, Lightbulb, Edit icons
 
 const benefits = [
   {
-    icon: (
-      <svg className="h-7 w-7 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-    title: 'Be the First',
-    desc: 'Get exclusive early access before anyone else.',
+    title: 'LIFETIME 50% Off: Get 50% off for life as a founding user.',
     float: 'float0',
   },
   {
-    icon: (
-      <svg className="h-7 w-7 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: 'FREE Beta Access',
-    desc: 'Use LeadFlow completely free during our initial launch.',
+    title: 'FREE Beta Access: Use LeadChoose completely free during our initial launch',
     float: 'float1',
   },
   {
-    icon: (
-      <svg className="h-7 w-7 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: 'LIFETIME 50% Discount',
-    desc: 'Secure half-price access FOREVER as a founding user.',
+    title: 'SHAPE The System: Being on the waitlist allows you to directly influence the features we build next with your feedback.',
     float: 'float2',
   },
 ];
@@ -39,7 +21,7 @@ export const Contact: React.FC = () => {
     name: '',
     email: '',
     company: '',
-    message: '',
+    phone: '',
     submitted: false,
     loading: false
   });
@@ -74,7 +56,7 @@ export const Contact: React.FC = () => {
         name: '',
         email: '',
         company: '',
-        message: ''
+        phone: ''
       }));
     }, 1500);
   };
@@ -88,25 +70,25 @@ export const Contact: React.FC = () => {
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700`}>
           {/* Benefits */}
           <div className="space-y-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Don't Miss Out – Revolutionize Your Real Estate Business
+            <h2 className="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Join the Waitlist & Lock In Lifetime Benefits</span>
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Enter your email below to join the exclusive LeadFlow waitlist. Be the first to experience automated nurturing designed for agents.
+              <span className="font-semibold">Get early access & all the benefits before we close the list.</span>
             </p>
             <div className="flex flex-col gap-7">
               {benefits.map((b, i) => (
                 <div
                   key={b.title}
-                  className={`relative bg-white/80 rounded-2xl shadow-xl border border-gray-100 px-6 py-5 flex items-center gap-4 animate-float ${b.float}`}
+                  className={`relative bg-white rounded-2xl shadow-xl border border-gray-100 px-6 py-5 flex items-center gap-4 animate-float ${b.float}`} /* Changed bg-white/80 to bg-white */
                   style={{ animationDelay: `${i * 0.3}s` }}
                 >
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-50 to-teal-50 flex items-center justify-center flex-shrink-0 shadow-md">
-                    {b.icon}
-                  </div>
+    
+                  <span className="flex-shrink-0 mt-1 mr-4">
+                <CheckCircle2 className={`h-8 w-8 text-indigo-500 drop-shadow-md transition-transform duration-500`} />
+              </span>
                   <div>
-                    <div className="font-semibold text-gray-900 text-lg mb-1">{b.title}</div>
-                    <div className="text-gray-600 text-base">{b.desc}</div>
+                    <div className="font-semibold text-gray-900 text-xl md:text-2xl mb-1">{b.title}</div>
                   </div>
                 </div>
               ))}
@@ -124,8 +106,11 @@ export const Contact: React.FC = () => {
               />
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Request a Demo
+                  Enter Your Email Below To Join The LeadChoose Waitlist.
                 </h3>
+                <p className="text-xl text-gray-600 mb-8">
+              <span className="font-semibold">An Automation System That Helps Agents Turn More Raw Leads Into Appointments and Closings.</span>
+            </p>
                 {formState.submitted ? (
                   <div className="text-center py-10 animate-fadein">
                     <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mx-auto mb-6 animate-pop">
@@ -184,17 +169,18 @@ export const Contact: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                        How can we help you?
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                        Phone number
                       </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        value={formState.message}
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="text"
+                        required
+                        value={formState.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]"
-                        placeholder="Tell us about your lead generation needs..."
+                        placeholder="123-456-7890"
                       />
                     </div>
                     <button
@@ -215,7 +201,7 @@ export const Contact: React.FC = () => {
                         </span>
                       ) : (
                         <span className="flex items-center justify-center">
-                          Request Demo
+                          Join the waitlist and save 50%
                           <SendIcon className="h-5 w-5 ml-2" />
                         </span>
                       )}

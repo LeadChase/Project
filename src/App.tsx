@@ -5,8 +5,8 @@ import { Home } from './components/Home.js';
 import { About } from './components/About.js';
 import { Contact } from './components/Contact.js';
 import { Waitlist } from './components/Waitlist.js';
-import { Footer } from './components/Footer.js';
 import { Confirm } from './components/Confirm.js';
+import { FreeSystemDemo } from './components/freeSystemDemo.js';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -31,9 +31,9 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/join-waitlist" element={<Waitlist />} />
             <Route path="/confirm" element={<Confirm />} />
+            <Route path="/freeSystemDemo" element={<FreeSystemDemo />} />
           </Routes>
         </main>
-        <Footer />
       </div>
     </Router>
   );
