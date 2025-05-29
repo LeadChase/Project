@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SendIcon, Check } from 'lucide-react';
 
 export const FreeSystemDemo: React.FC = () => {
@@ -15,20 +15,6 @@ export const FreeSystemDemo: React.FC = () => {
     submitted: false,
     loading: false
   });
-
-  // Animation: reveal on scroll
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.2 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
