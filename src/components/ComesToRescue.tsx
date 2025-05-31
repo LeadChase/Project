@@ -4,19 +4,19 @@ import { CheckCircle2 } from 'lucide-react';
 const checklist = [
   {
     title: 'Drastically increase your average real estate lead conversion.',
-    description: 'More Leads'
+    description: 'More Qualified Leads'
   },
   {
     title: 'Double your ROI on lead spend just by following up with people who were already in our system.',
-    description: 'More Appointments'
+    description: 'Higher Answer Rate'
   },
   {
     title: 'Spend more time selling — not categorizing, managing, or chasing cold leads',
-    description: 'More Closing'
+    description: 'Lower Sales Overhead'
   },
 ];
 
-export const HowItWorks: React.FC = () => {
+export const ComesToRescue: React.FC = () => {
   // Animation: reveal on scroll
   const containerRef = useRef<HTMLDivElement>(null);
   const [inViewArr, setInViewArr] = useState(checklist.map(() => false));
@@ -44,14 +44,14 @@ export const HowItWorks: React.FC = () => {
   }, []);
 
   return (
-    <section id="how-it-works" className="py-20 bg-gray-50">
+    <section id="comes-to-rescue" className="py-20 bg-gray-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            LeadChoose <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Is Here For You</span>
+            LeadChoose <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Comes To Rescue</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
-            We use AI that follows up with every lead <span className="font-semibold">automatically by text & email or phone call </span>, qualifies them, live transfers hot leads, and updates your CRM. No lead slips through the cracks. More time spent on lead categorization, management, or data entry. No wasted ad spend on leads that never hear back.
+            We use AI that follows up with every lead <span className="font-semibold">automatically by text & email or phone call </span>, qualifies them, live transfers hot leads, and updates your CRM. No lead slips through the cracks. No more time spent on lead categorization, management, or data entry. No wasted ad spend on leads that never hear back.
           </p>
         </div>
         
@@ -80,6 +80,11 @@ export const HowItWorks: React.FC = () => {
 
         {/* Removed SVG and its associated animations */}
         {/* Removed specific float keyframes as they are no longer needed */}
+
+        {/* Added sentence below the section */}
+      <div className="text-center mt-12 text-gray-700 text-xl font-semibold">
+        Get more qualified appointments. Grow your revenue.
+      </div>
         <style>{`
           @keyframes pop {
             0% { transform: scale(0.7); }

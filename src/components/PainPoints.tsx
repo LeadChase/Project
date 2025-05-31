@@ -2,13 +2,13 @@ import React, { useRef, useEffect, useState } from 'react'; // Import useRef, us
 
 const allPainPointsTitles = [
   'Leads Ghost or Disappear',
-  'Too Much Time on Bad Leads',
-  'Unqualified Leads Clog Pipeline',
-  'Time Spent on Admin, Not Selling',
-  'Agents Overwhelmed by Unqualified Leads',
-  'Leads Forgotten or Neglected',
-  'No Clarity on Lead Source/Contact',
-  'Not Responding Fast Enough',
+  'Too Much Time Is Spend On Bad Leads',
+  'Unqualified Leads Clog Your Pipeline',
+  'Time Is Spend On Admin Not Selling',
+  'Agents Are Overwhelmed By Unqualified Leads',
+  'Leads Are Forgotten Or Neglected',
+  'No Clarity On Lead Source/Contact',
+  'Slow Response Times',
   'Low Conversion Despite High Volume',
   'Can’t Remember Follow-ups/Contacts',
 ];
@@ -50,7 +50,7 @@ export const PainPoints: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            You Are Missing Opportunities Because…
+            Reasons You Are Missing Opportunities…
           </h2>
         </div>
         

@@ -71,14 +71,14 @@ export function Waitlist() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white py-12 px-4 sm:px-6 lg:px-8 mt-14">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Join the LeadChoose Waitlist
+            Convert More Leads Into Closed Deals With AI.
           </h1>
           <p className="text-xl text-gray-600">
-            Be among the first to experience AI-powered lead generation for real estate
+            Automate your sales with AI calling, texting, appointment setting, & live phone transfers.
           </p>
         </div>
 
