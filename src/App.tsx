@@ -7,6 +7,7 @@ import { Contact } from './components/Contact.js';
 import { Waitlist } from './components/Waitlist.js';
 import { Confirm } from './components/Confirm.js';
 import { FreeSystemDemo } from './components/freeSystemDemo.js';
+import {CopyrightFooter} from './components/copyrightFooter.js'
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,6 +35,7 @@ function App() {
             <Route path="/freeSystemDemo" element={<FreeSystemDemo />} />
           </Routes>
         </main>
+        <CopyrightFooter />
       </div>
     </Router>
   );

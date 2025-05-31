@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
           </h1>
           
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed px-4">
-            We help you automate your sales process using <span className="font-medium">conversational AI</span>, so you can <span className="font-medium">follow up with leads 24/7</span>, and get back to what you love the most. Being in the field, face to face, closing deals, and building relationships.
+            We help you automate your sales process using conversational AI, so you can follow up with leads 24/7, and get back to what you love the most. Being  <span className="font-semibold">in the field, face to face, closing deals, and building relationships.</span>
           </p>
         </div>
         
