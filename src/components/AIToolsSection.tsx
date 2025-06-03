@@ -1,4 +1,3 @@
-
 import { PhoneCall, MessageSquareText, ArrowRightLeft, CalendarCheck } from 'lucide-react';
 
 const aiTools = [
@@ -42,7 +41,7 @@ export const AIToolsSection = () => {
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {aiTools.map((tool, index) => (
+          {aiTools.map((tool) => (
             <div
               key={tool.title}
               className="group relative bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2 border border-gray-100"
