@@ -9,7 +9,7 @@ const features = [
     tags: [
       { label: 'Email', color: 'bg-indigo-100 text-indigo-700' },
       { label: 'SMS', color: 'bg-purple-100 text-purple-700' },
-      { label: 'Voice', color: 'bg-green-100 text-green-700' },
+      { label: 'Call', color: 'bg-green-100 text-green-700' },
     ]
   },
   {
@@ -27,9 +27,8 @@ const features = [
     title: 'Appointments and Live Transfers',
     description: 'Appointment setting. Live call transfers with qualified leads. AI either schedules an appointment or connects to a human agent.',
     tags: [
-      { label: 'Appointments Set', color: 'bg-green-100 text-green-700' },
+      { label: 'Appointments Setter', color: 'bg-green-100 text-green-700' },
       { label: 'Live Calls', color: 'bg-teal-100 text-teal-700' },
-      { label: 'Qualified', color: 'bg-blue-100 text-blue-700' },
     ]
   },
   {
@@ -84,7 +83,7 @@ containerRef.current?.querySelectorAll('.feature-card') ?? [];
   }, []);
 
   return (
-    <section className="py-16 bg-transparent relative overflow-x-clip">
+    <section id="how-it-works" className="py-16 bg-transparent relative overflow-x-clip">
       {/* Soft background glow */}
       <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[220px] bg-indigo-300/10 rounded-full blur-3xl z-0"></div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
