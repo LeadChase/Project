@@ -1,0 +1,82 @@
+# TODO: Make All SaaS Demo Features Real & Functional
+
+## General
+- Set up a real backend (Node.js, Python, etc.) and database (Postgres, MongoDB, etc.)
+- Implement authentication and user management (sign up, login, roles)
+- Connect frontend to backend via API (REST or GraphQL)
+
+## Dashboard
+- Fetch real metrics from backend (leads, calls, texts, appointments, etc.)
+- Implement real-time updates for KPIs and alerts
+
+## Leads
+- CRUD for leads: create, read, update, delete (API + DB)
+- Filtering, searching, and sorting from backend
+- Lead detail view: show real communication timeline (calls, texts, emails)
+- Import/export leads (CSV, Excel)
+- Lead assignment logic for teams
+
+## AI Calling
+- Integrate with a telephony provider (e.g., Twilio, Plivo) for real AI calls
+- Store and fetch call logs, transcripts, and outcomes
+- Implement call campaign scheduling and retry logic
+- Script customization and transfer settings (persisted in DB)
+- Live call transfer logic (see below)
+
+## AI Texting
+- Integrate with SMS provider (e.g., Twilio, MessageBird) for real texting
+- Store and fetch SMS conversations per lead
+- Implement drip campaign scheduling and management
+- Bulk texting with compliance checks
+- Template library (CRUD)
+
+## Email Follow-Up
+- Integrate with email provider (e.g., SendGrid, Mailgun)
+- Store and fetch sent/scheduled emails, open/click tracking
+- Drip campaign scheduling and management
+- Email template designer (CRUD, HTML support)
+- CAN-SPAM compliance (unsubscribe, footer)
+
+## Appointments
+- Store and fetch appointments from backend
+- Integrate with calendar APIs (Google Calendar, Outlook) for sync
+- Scheduling, rescheduling, and cancellation logic
+- Send reminders (email/SMS)
+
+## Live Call Transfers
+- Real-time agent availability (toggle, status API)
+- Implement live transfer logic with telephony provider
+- Store and fetch transfer logs
+- Agent notification (web, SMS, or call pop)
+
+## Analytics
+- Aggregate and visualize real data (charts, maps, funnels)
+- Filter by source, campaign, location, etc.
+- Export analytics (CSV, PDF)
+
+## CRM Integration
+- Build connectors for major CRMs (Salesforce, HubSpot, Follow Up Boss, etc.)
+- Two-way sync of leads, activities, and statuses
+- Field mapping UI and logic
+- Integration status and error handling
+
+## Compliance Tools
+- Store and manage opt-in/opt-out/DNC lists in backend
+- Integrate with 10DLC registration APIs (for SMS compliance)
+- Enforce call/email/SMS compliance rules in backend
+- Store and display audit logs
+
+## Settings & Admin
+- User/team management (invite, remove, change roles)
+- Branding (logo upload, company info)
+- Billing integration (Stripe, etc.)
+- Notification preferences (email, SMS, web push)
+- Support/help links (knowledge base, ticketing)
+
+---
+
+# Next Steps
+- Prioritize which modules to build first
+- Design backend API and database schema
+- Set up CI/CD for deployment
+- Write tests for all critical features 
