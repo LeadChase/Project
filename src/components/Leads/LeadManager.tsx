@@ -142,7 +142,7 @@ export const LeadManager: React.FC = () => {
                   lead.status === 'new' ? 'bg-blue-100 text-blue-800' :
                   lead.status === 'contacted' ? 'bg-yellow-100 text-yellow-800' :
                   lead.status === 'qualified' ? 'bg-green-100 text-green-800' :
-                  lead.status === 'proposal' ? 'bg-purple-100 text-purple-800' :
+                  lead.status === 'proposal' ? 'bg-red-100 text-red-800' :
                   'bg-gray-100 text-gray-800'
                 }`}>
                   {lead.status}
@@ -263,7 +263,7 @@ export const LeadManager: React.FC = () => {
                     selectedLead.status === 'new' ? 'bg-blue-100 text-blue-800' :
                     selectedLead.status === 'contacted' ? 'bg-yellow-100 text-yellow-800' :
                     selectedLead.status === 'qualified' ? 'bg-green-100 text-green-800' :
-                    selectedLead.status === 'proposal' ? 'bg-purple-100 text-purple-800' :
+                    selectedLead.status === 'proposal' ? 'bg-red-100 text-red-800' :
                     'bg-gray-100 text-gray-800'
                   }`}>
                     {selectedLead.status}

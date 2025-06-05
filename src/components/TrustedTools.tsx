@@ -60,7 +60,9 @@ export const TrustedTools: React.FC = () => {
           <h2 className="text-lg md:text-xl font-bold tracking-wide text-gray-900 mb-2 uppercase">
             Easy & Friendly CRM Integration
           </h2>
-          <h4> <span className="text-gray-800">Works with any CRM and tools you </span> <span className="text-purple-600">already trust and use</span></h4>
+
+          <h4> <span className="text-gray-800">Works with any CRM and tools you </span> <span className="text-red-600">already trust and use</span></h4>
+
         </div>
         <div
           className="overflow-x-hidden w-full"

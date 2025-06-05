@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative pt-20 pb-8 bg-transparent overflow-x-clip">
       {/* Animated gradient glow */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[320px] bg-gradient-to-tr from-indigo-400/20 via-purple-400/20 to-teal-300/20 rounded-full blur-3xl z-0 animate-footerGlow" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[320px] bg-gradient-to-tr from-red-400/20 via-rose-400/20 to-teal-300/20 rounded-full blur-3xl z-0 animate-footerGlow" />
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} ref={sectionRef}>
         {/* Top row: logo + socials */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-8 md:gap-0">
@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
               <a
                 key={i}
                 href={s.href}
-                className="group bg-white/60 backdrop-blur-md rounded-full p-2 shadow-md transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-400/30 hover:to-purple-400/30 hover:scale-110"
+                className="group bg-white/60 backdrop-blur-md rounded-full p-2 shadow-md transition-all duration-300 hover:bg-gradient-to-tr hover:from-red-400/30 hover:to-rose-400/30 hover:scale-110"
                 tabIndex={0}
               >
                 <span className="text-gray-500 group-hover:text-teal-500 transition-colors">{s.icon}</span>

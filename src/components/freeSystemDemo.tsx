@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import { Check, Users, Phone, MessageCircle, Calendar, TrendingUp, AlertTriangle, PieChart } from 'lucide-react';
 
 // Placeholder components for each SaaS module
-const DemoHome = () => <div className="p-8">Welcome to the Real Estate Lead Automation SaaS Demo. Use the menu to explore features.</div>;
+
+const DemoHome = () => <div className="mt-24 pt-8 p-8">
+  <h1 className="text-2xl font-bold text-red-600">Welcome to the Real Estate Lead Automation SaaS Demo.</h1>
+  <p className="mt-4 text-lg font-semibold text-red-500">Use the menu to explore features.</p>
+</div>;
+
 
 // --- Dashboard Component ---
 const mockDashboard = {
   metrics: [
-    { label: 'New Leads (Today)', value: 12, icon: <Users className="h-6 w-6 text-indigo-500" /> },
+
+    { label: 'New Leads (Today)', value: 12, icon: <Users className="h-6 w-6 text-red-500" /> },
     { label: 'AI Calls (Today)', value: 34, icon: <Phone className="h-6 w-6 text-green-500" /> },
     { label: 'AI Texts (Today)', value: 58, icon: <MessageCircle className="h-6 w-6 text-blue-500" /> },
-    { label: 'Appointments Set', value: 7, icon: <Calendar className="h-6 w-6 text-purple-500" /> },
+    { label: 'Appointments Set', value: 7, icon: <Calendar className="h-6 w-6 text-red-500" /> },
+
   ],
   funnel: [
     { stage: 'Contacted', value: 120 },
@@ -46,7 +53,9 @@ const Dashboard = () => (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
       {mockDashboard.metrics.map((m, i) => (
         <div key={i} className="bg-white rounded-xl shadow p-4 flex items-center space-x-4">
-          <div className="bg-indigo-50 rounded-full p-2">{m.icon}</div>
+
+          <div className="bg-red-50 rounded-full p-2">{m.icon}</div>
+
           <div>
             <div className="text-2xl font-bold text-gray-900">{m.value}</div>
             <div className="text-gray-500 text-sm">{m.label}</div>
@@ -56,11 +65,13 @@ const Dashboard = () => (
     </div>
     {/* Conversion Funnel */}
     <div className="bg-white rounded-xl shadow p-6">
-      <div className="font-semibold text-gray-800 mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-indigo-500" />Conversion Funnel</div>
+
+      <div className="font-semibold text-gray-800 mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-red-500" />Conversion Funnel</div>
       <div className="flex items-end space-x-6 mt-4">
         {mockDashboard.funnel.map((f, i) => (
           <div key={i} className="flex flex-col items-center">
-            <div className="h-20 w-8 bg-indigo-200 rounded-t-lg" style={{ height: `${40 + f.value}px` }}></div>
+            <div className="h-20 w-8 bg-red-200 rounded-t-lg" style={{ height: `${40 + f.value}px` }}></div>
+
             <div className="text-xs text-gray-600 mt-1">{f.stage}</div>
             <div className="text-sm font-semibold text-gray-800">{f.value}</div>
           </div>
@@ -69,7 +80,9 @@ const Dashboard = () => (
     </div>
     {/* Upcoming Appointments */}
     <div className="bg-white rounded-xl shadow p-6">
-      <div className="font-semibold text-gray-800 mb-2 flex items-center"><Calendar className="h-5 w-5 mr-2 text-purple-500" />Upcoming Appointments</div>
+
+      <div className="font-semibold text-gray-800 mb-2 flex items-center"><Calendar className="h-5 w-5 mr-2 text-red-500" />Upcoming Appointments</div>
+
       <ul className="divide-y divide-gray-100">
         {mockDashboard.appointments.map((a, i) => (
           <li key={i} className="py-2 flex justify-between items-center">
@@ -91,8 +104,10 @@ const Dashboard = () => (
     {/* Performance Highlights */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {mockDashboard.highlights.map((h, i) => (
-        <div key={i} className="bg-indigo-50 rounded-xl p-4 flex flex-col items-center">
-          <div className="text-2xl font-bold text-indigo-700">{h.value}</div>
+
+        <div key={i} className="bg-red-50 rounded-xl p-4 flex flex-col items-center">
+          <div className="text-2xl font-bold text-red-700">{h.value}</div>
+
           <div className="text-gray-600 text-sm mt-1">{h.label}</div>
         </div>
       ))}
@@ -170,39 +185,47 @@ const leadTypes = ['Buyer', 'Seller', 'Renter'];
 const leadSources = ['Google Ads', 'Facebook', 'Website', 'Referral'];
 
 const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
-  <form onSubmit={handleSubmit} className="space-y-6">
+
+  <form onSubmit={handleSubmit} className="space-y-6 mt-24 pt-8">
+
     {/* Full Name and Email fields side-by-side */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-        <input id="name" name="name" type="text" required value={formState.name} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="John Smith" />
+
+        <input id="name" name="name" type="text" required value={formState.name} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="John Smith" />
       </div>
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-        <input id="email" name="email" type="email" required value={formState.email} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="john@company.com" />
+        <input id="email" name="email" type="email" required value={formState.email} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="john@company.com" />
+
       </div>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
         <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">Company name</label>
-        <input id="company" name="company" type="text" required value={formState.company} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="Company Inc." />
+
+        <input id="company" name="company" type="text" required value={formState.company} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="Company Inc." />
       </div>
       <div>
         <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone number</label>
-        <input id="phone" name="phone" type="text" required value={formState.phone} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="123-456-7890" />
+        <input id="phone" name="phone" type="text" required value={formState.phone} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="123-456-7890" />
+
       </div>
     </div>
     <div>
       <label htmlFor="mostImportantQuestion" className="block text-sm font-medium text-gray-700 mb-1">What is your most important question?</label>
-      <input id="mostImportantQuestion" name="mostImportantQuestion" type="text" value={formState.mostImportantQuestion} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="e.g., How long until I see results?" />
+
+      <input id="mostImportantQuestion" name="mostImportantQuestion" type="text" value={formState.mostImportantQuestion} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="e.g., How long until I see results?" />
     </div>
     <div>
       <label htmlFor="howDidYouFindUs" className="block text-sm font-medium text-gray-700 mb-1">How did you find us?</label>
-      <input id="howDidYouFindUs" name="howDidYouFindUs" type="text" value={formState.howDidYouFindUs} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="e.g., Google search, social media, referral" />
+      <input id="howDidYouFindUs" name="howDidYouFindUs" type="text" value={formState.howDidYouFindUs} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="e.g., Google search, social media, referral" />
     </div>
     <div>
       <label htmlFor="estimatedMonthlyLeadVolume" className="block text-sm font-medium text-gray-700 mb-1">What is your estimated monthly lead volume?</label>
-      <select id="leadVolume" name="leadVolume" value={formState.leadType} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]">
+      <select id="leadVolume" name="leadVolume" value={formState.leadType} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]">
+
         <option value="">Select an option</option>
         <option value="Less than hundred">Less than 100</option>
         <option value="hundred to five hundred">100-500</option>
@@ -214,7 +237,9 @@ const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
     </div>
     <div>
       <label htmlFor="leadType" className="block text-sm font-medium text-gray-700 mb-1">Which CRM system do you use?</label>
-      <select id="crmSystem" name="crmSystem" value={formState.leadType} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]">
+
+      <select id="crmSystem" name="crmSystem" value={formState.leadType} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]">
+
         <option value="">Select an option</option>
         <option value="Real estate buyer">Real estate buyer</option>
         <option value="Real estate seller">Real estate seller</option>
@@ -222,48 +247,56 @@ const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
         <option value="Mortgage home refinance">Mortgage home refinance</option>
       </select>
     </div>
-    <button type="submit" disabled={formState.loading} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+    <button type="submit" disabled={formState.loading} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+
       {formState.loading ? 'Submitting...' : 'Request Demo'}
     </button>
   </form>
 );
 
 const Leads = () => {
+
+  const [leads, setLeads] = useState(mockLeads);
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('');
-  const [typeFilter, setTypeFilter] = useState('');
-  const [sourceFilter, setSourceFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState('All');
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [showAdd, setShowAdd] = useState(false);
-  const [leads, setLeads] = useState<Lead[]>(mockLeads);
 
-  const filteredLeads = leads.filter(l =>
-    (!search || l.name.toLowerCase().includes(search.toLowerCase()) || l.email.toLowerCase().includes(search.toLowerCase())) &&
-    (!statusFilter || l.status === statusFilter) &&
-    (!typeFilter || l.type === typeFilter) &&
-    (!sourceFilter || l.source === sourceFilter)
-  );
+  const filteredLeads = leads.filter(lead => {
+    const matchesSearch = lead.name.toLowerCase().includes(search.toLowerCase()) ||
+      lead.email.toLowerCase().includes(search.toLowerCase()) ||
+      lead.phone.includes(search);
+    const matchesStatus = statusFilter === 'All' || lead.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
 
   const handleAddLead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+
+    const formData = new FormData(form);
     const newLead: Lead = {
       id: leads.length + 1,
-      name: (form.elements.namedItem('name') as HTMLInputElement).value,
-      type: (form.elements.namedItem('type') as HTMLSelectElement).value,
+      name: formData.get('name') as string,
+      type: formData.get('type') as string,
       status: 'New',
-      source: (form.elements.namedItem('source') as HTMLSelectElement).value,
-      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      lastContact: new Date().toISOString().slice(0, 10),
+      source: formData.get('source') as string,
+      phone: formData.get('phone') as string,
+      email: formData.get('email') as string,
+      lastContact: new Date().toISOString().split('T')[0],
       assigned: 'Unassigned',
     };
-    setLeads([newLead, ...leads]);
+    setLeads([...leads, newLead]);
+
     setShowAdd(false);
   };
 
   return (
-    <div className="space-y-6">
+
+    <div className="space-y-6 mt-24 pt-8">
+
       <div className="flex flex-wrap gap-4 items-center justify-between">
         <div className="flex gap-2">
           <input
@@ -271,27 +304,31 @@ const Leads = () => {
             placeholder="Search by name or email..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400"
+
+            className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-red-400"
           />
           <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="px-3 py-2 border rounded-lg">
-            <option value="">All Statuses</option>
+            <option value="All">All Statuses</option>
             {leadStatuses.map(s => <option key={s}>{s}</option>)}
           </select>
-          <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="px-3 py-2 border rounded-lg">
-            <option value="">All Types</option>
+          <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="px-3 py-2 border rounded-lg">
+            <option value="All">All Types</option>
             {leadTypes.map(t => <option key={t}>{t}</option>)}
           </select>
-          <select value={sourceFilter} onChange={e => setSourceFilter(e.target.value)} className="px-3 py-2 border rounded-lg">
-            <option value="">All Sources</option>
+          <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="px-3 py-2 border rounded-lg">
+            <option value="All">All Sources</option>
             {leadSources.map(s => <option key={s}>{s}</option>)}
           </select>
         </div>
-        <button onClick={() => setShowAdd(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700">+ Add Lead</button>
+        <button onClick={() => setShowAdd(true)} className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">+ Add Lead</button>
+
       </div>
       <div className="overflow-x-auto rounded-lg shadow">
         <table className="min-w-full bg-white">
           <thead>
-            <tr className="bg-indigo-50 text-indigo-900">
+
+            <tr className="bg-red-50 text-red-900">
+
               <th className="px-4 py-2 text-left">Name</th>
               <th className="px-4 py-2 text-left">Type</th>
               <th className="px-4 py-2 text-left">Status</th>
@@ -304,8 +341,10 @@ const Leads = () => {
           </thead>
           <tbody>
             {filteredLeads.map(lead => (
-              <tr key={lead.id} className="hover:bg-indigo-50 cursor-pointer" onClick={() => setSelectedLead(lead)}>
-                <td className="px-4 py-2 font-medium text-indigo-700">{lead.name}</td>
+
+              <tr key={lead.id} className="hover:bg-red-50 cursor-pointer" onClick={() => setSelectedLead(lead)}>
+                <td className="px-4 py-2 font-medium text-red-700">{lead.name}</td>
+
                 <td className="px-4 py-2">{lead.type}</td>
                 <td className="px-4 py-2">
                   <span className={`px-2 py-1 rounded text-xs font-semibold ${lead.status === 'New' ? 'bg-green-100 text-green-700' : lead.status === 'Qualified' ? 'bg-blue-100 text-blue-700' : lead.status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-200 text-gray-700'}`}>{lead.status}</span>
@@ -328,7 +367,9 @@ const Leads = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md relative animate-fadein">
             <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setSelectedLead(null)}>&times;</button>
-            <h3 className="text-xl font-bold mb-2 text-indigo-700">{selectedLead.name}</h3>
+
+            <h3 className="text-xl font-bold mb-2 text-red-700">{selectedLead.name}</h3>
+
             <div className="mb-2 text-gray-600">{selectedLead.type} Lead &bull; {selectedLead.status}</div>
             <div className="mb-2"><span className="font-semibold">Source:</span> {selectedLead.source}</div>
             <div className="mb-2"><span className="font-semibold">Phone:</span> {selectedLead.phone}</div>
@@ -340,7 +381,9 @@ const Leads = () => {
               <select value={selectedLead.status} onChange={e => setSelectedLead({ ...selectedLead, status: e.target.value })} className="px-3 py-2 border rounded-lg">
                 {leadStatuses.map(s => <option key={s}>{s}</option>)}
               </select>
-              <button className="ml-2 bg-indigo-600 text-white px-3 py-2 rounded-lg" onClick={() => {
+
+              <button className="ml-2 bg-red-600 text-white px-3 py-2 rounded-lg" onClick={() => {
+
                 setLeads(leads.map(l => l.id === selectedLead.id ? { ...l, status: selectedLead.status } : l));
                 setSelectedLead(null);
               }}>Save</button>
@@ -353,7 +396,9 @@ const Leads = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <form className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md relative animate-fadein" onSubmit={handleAddLead}>
             <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setShowAdd(false)} type="button">&times;</button>
-            <h3 className="text-xl font-bold mb-4 text-indigo-700">Add New Lead</h3>
+
+            <h3 className="text-xl font-bold mb-4 text-red-700">Add New Lead</h3>
+
             <div className="mb-3">
               <label className="block text-sm font-medium mb-1">Name</label>
               <input name="name" required className="w-full px-3 py-2 border rounded-lg" />
@@ -378,7 +423,8 @@ const Leads = () => {
               <label className="block text-sm font-medium mb-1">Email</label>
               <input name="email" type="email" required className="w-full px-3 py-2 border rounded-lg" />
             </div>
-            <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium w-full mt-2">Add Lead</button>
+            <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium w-full mt-2">Add Lead</button>
+
           </form>
         </div>
       )}
@@ -408,12 +454,16 @@ const AICalling = () => {
   const [transferNumber, setTransferNumber] = useState('555-0000');
 
   return (
-    <div className="space-y-8">
+
+    <div className="space-y-8 mt-24 pt-8">
+
       {/* Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {mockAICallMetrics.map((m, i) => (
           <div key={i} className="bg-white rounded-xl shadow p-4 flex flex-col items-center">
-            <div className="text-2xl font-bold text-indigo-700">{m.value}</div>
+
+            <div className="text-2xl font-bold text-red-700">{m.value}</div>
+
             <div className="text-gray-500 text-sm mt-1">{m.label}</div>
           </div>
         ))}
@@ -424,7 +474,9 @@ const AICalling = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
+
+              <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Lead</th>
                 <th className="px-4 py-2 text-left">Time</th>
                 <th className="px-4 py-2 text-left">Status</th>
@@ -434,13 +486,17 @@ const AICalling = () => {
             </thead>
             <tbody>
               {mockAICalls.map(call => (
-                <tr key={call.id} className="hover:bg-indigo-50">
-                  <td className="px-4 py-2 font-medium text-indigo-700">{call.lead}</td>
+
+                <tr key={call.id} className="hover:bg-red-50">
+                  <td className="px-4 py-2 font-medium text-red-700">{call.lead}</td>
+
                   <td className="px-4 py-2">{call.time}</td>
                   <td className="px-4 py-2">{call.status}</td>
                   <td className="px-4 py-2">{call.outcome}</td>
                   <td className="px-4 py-2">
-                    <button className="text-indigo-600 underline" onClick={() => setShowTranscript({lead: call.lead, transcript: call.transcript})}>View</button>
+
+                    <button className="text-red-600 underline" onClick={() => setShowTranscript({lead: call.lead, transcript: call.transcript})}>View</button>
+
                   </td>
                 </tr>
               ))}
@@ -475,7 +531,9 @@ const AICalling = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative animate-fadein">
             <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setShowTranscript(null)}>&times;</button>
-            <h3 className="text-xl font-bold mb-2 text-indigo-700">Call Transcript: {showTranscript.lead}</h3>
+
+            <h3 className="text-xl font-bold mb-2 text-red-700">Call Transcript: {showTranscript.lead}</h3>
+
             <pre className="bg-gray-50 rounded p-4 text-sm text-gray-800 whitespace-pre-wrap">{showTranscript.transcript}</pre>
           </div>
         </div>
@@ -543,63 +601,67 @@ const AITexting = () => {
   };
 
   return (
-    <div className="flex h-[600px] bg-white rounded-xl shadow overflow-hidden">
-      {/* Conversation List */}
-      <aside className="w-64 border-r bg-gray-50 flex flex-col">
-        <div className="p-4 font-semibold text-indigo-700 border-b">Conversations</div>
-        <ul className="flex-1 overflow-y-auto">
-          {conversations.map(conv => (
-            <li
-              key={conv.id}
-              className={`px-4 py-3 cursor-pointer border-b hover:bg-indigo-50 ${selectedId === conv.id ? 'bg-indigo-100' : ''}`}
-              onClick={() => setSelectedId(conv.id)}
+
+    <div className="mt-16 pt-8">
+      <div className="flex h-[600px] bg-white rounded-xl shadow overflow-hidden">
+        {/* Conversation List */}
+        <aside className="w-64 border-r bg-gray-50 flex flex-col">
+          <div className="p-4 font-semibold text-red-700 border-b">Conversations</div>
+          <ul className="flex-1 overflow-y-auto">
+            {conversations.map(conv => (
+              <li
+                key={conv.id}
+                className={`px-4 py-3 cursor-pointer border-b hover:bg-red-50 ${selectedId === conv.id ? 'bg-red-100' : ''}`}
+                onClick={() => setSelectedId(conv.id)}
+              >
+                <div className="font-medium text-gray-800">{conv.lead}</div>
+                <div className="text-xs text-gray-500">{conv.phone}</div>
+                <div className="text-xs text-gray-400 truncate mt-1">
+                  {conv.messages[conv.messages.length - 1]?.content}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </aside>
+        {/* Chat Window */}
+        <section className="flex-1 flex flex-col">
+          <div className="p-4 border-b bg-red-50 flex items-center">
+            <div className="font-semibold text-red-700 text-lg">{selectedConv?.lead || 'Select a conversation'}</div>
+            <div className="ml-4 text-xs text-gray-500">{selectedConv?.phone}</div>
+          </div>
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white">
+            {selectedConv?.messages.length === 0 && (
+              <div className="text-center text-gray-400 mt-8">No messages yet.</div>
+            )}
+            {selectedConv?.messages.map((msg, idx) => (
+              <div key={idx} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[70%] rounded-lg p-3 ${msg.type === 'user' ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-800'}`}>
+                  <p className="whitespace-pre-wrap">{msg.content}</p>
+                  <p className="text-xs mt-1 opacity-70">{msg.timestamp.toLocaleTimeString()}</p>
+                </div>
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+          <form onSubmit={handleSend} className="p-4 border-t bg-gray-50 flex gap-2">
+            <input
+              type="text"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              placeholder="Type a message..."
+              className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500"
+            />
+            <button
+              type="submit"
+              disabled={!input.trim()}
+              className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 disabled:opacity-50"
             >
-              <div className="font-medium text-gray-800">{conv.lead}</div>
-              <div className="text-xs text-gray-500">{conv.phone}</div>
-              <div className="text-xs text-gray-400 truncate mt-1">
-                {conv.messages[conv.messages.length - 1]?.content}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </aside>
-      {/* Chat Window */}
-      <section className="flex-1 flex flex-col">
-        <div className="p-4 border-b bg-indigo-50 flex items-center">
-          <div className="font-semibold text-indigo-700 text-lg">{selectedConv?.lead || 'Select a conversation'}</div>
-          <div className="ml-4 text-xs text-gray-500">{selectedConv?.phone}</div>
-        </div>
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white">
-          {selectedConv?.messages.length === 0 && (
-            <div className="text-center text-gray-400 mt-8">No messages yet.</div>
-          )}
-          {selectedConv?.messages.map((msg, idx) => (
-            <div key={idx} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[70%] rounded-lg p-3 ${msg.type === 'user' ? 'bg-indigo-500 text-white' : 'bg-gray-100 text-gray-800'}`}>
-                <p className="whitespace-pre-wrap">{msg.content}</p>
-                <p className="text-xs mt-1 opacity-70">{msg.timestamp.toLocaleTimeString()}</p>
-              </div>
-            </div>
-          ))}
-          <div ref={messagesEndRef} />
-        </div>
-        <form onSubmit={handleSend} className="p-4 border-t bg-gray-50 flex gap-2">
-          <input
-            type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Type a message..."
-            className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500"
-          />
-          <button
-            type="submit"
-            disabled={!input.trim()}
-            className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 disabled:opacity-50"
-          >
-            Send
-          </button>
-        </form>
-      </section>
+              Send
+            </button>
+          </form>
+        </section>
+      </div>
+
     </div>
   );
 };
@@ -636,91 +698,95 @@ const EmailFollowUp = () => {
   const [template, setTemplate] = useState('Hi {{name}},\n\nThanks for reaching out to XYZ Realty!\n\nLet us know how we can help.');
 
   return (
-    <div className="space-y-8">
-      {/* Email Sequences */}
-      <div className="bg-white rounded-xl shadow p-6">
-        <div className="font-semibold text-gray-800 mb-2">Automated Email Sequences</div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full">
-            <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
-                <th className="px-4 py-2 text-left">Sequence Name</th>
-                <th className="px-4 py-2 text-left">Step</th>
-                <th className="px-4 py-2 text-left">Day</th>
-                <th className="px-4 py-2 text-left">Subject</th>
-                <th className="px-4 py-2 text-left">Preview</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mockEmailSequences.flatMap(seq =>
-                seq.steps.map((step, idx) => (
-                  <tr key={seq.id + '-' + idx}>
-                    <td className="px-4 py-2 font-medium text-indigo-700">{seq.name}</td>
-                    <td className="px-4 py-2">{idx + 1}</td>
-                    <td className="px-4 py-2">Day {step.day}</td>
-                    <td className="px-4 py-2">{step.subject}</td>
-                    <td className="px-4 py-2 text-gray-500">{step.preview}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {/* Sent/Scheduled Emails */}
-      <div className="bg-white rounded-xl shadow p-6">
-        <div className="font-semibold text-gray-800 mb-2">Sent & Scheduled Emails</div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full">
-            <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
-                <th className="px-4 py-2 text-left">To</th>
-                <th className="px-4 py-2 text-left">Subject</th>
-                <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Sent At</th>
-                <th className="px-4 py-2 text-left">Opened</th>
-                <th className="px-4 py-2 text-left">Clicked</th>
-                <th className="px-4 py-2 text-left">View</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mockSentEmails.map(email => (
-                <tr key={email.id}>
-                  <td className="px-4 py-2">{email.to}</td>
-                  <td className="px-4 py-2">{email.subject}</td>
-                  <td className="px-4 py-2">{email.status}</td>
-                  <td className="px-4 py-2">{email.sentAt}</td>
-                  <td className="px-4 py-2">{email.opened ? '✔️' : ''}</td>
-                  <td className="px-4 py-2">{email.clicked ? '✔️' : ''}</td>
-                  <td className="px-4 py-2">
-                    <button className="text-indigo-600 underline" onClick={() => setShowEmail({subject: email.subject, content: email.content})}>View</button>
-                  </td>
+
+    <div className="mt-16 pt-8">
+      <div className="space-y-8">
+        {/* Email Sequences */}
+        <div className="bg-white rounded-xl shadow p-6">
+          <div className="font-semibold text-gray-800 mb-2">Automated Email Sequences</div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead>
+                <tr className="bg-red-50 text-red-900">
+                  <th className="px-4 py-2 text-left">Sequence Name</th>
+                  <th className="px-4 py-2 text-left">Step</th>
+                  <th className="px-4 py-2 text-left">Day</th>
+                  <th className="px-4 py-2 text-left">Subject</th>
+                  <th className="px-4 py-2 text-left">Preview</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {/* Template Designer */}
-      <div className="bg-white rounded-xl shadow p-6">
-        <div className="font-semibold text-gray-800 mb-2">Email Template Designer</div>
-        <textarea
-          value={template}
-          onChange={e => setTemplate(e.target.value)}
-          className="w-full px-4 py-3 border rounded-lg min-h-[120px] font-mono"
-        />
-        <div className="text-xs text-gray-500 mt-2">Use <code>{'{{name}}'}</code> for personalization.</div>
-      </div>
-      {/* Email Content Modal */}
-      {showEmail && (
-        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative animate-fadein">
-            <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setShowEmail(null)}>&times;</button>
-            <h3 className="text-xl font-bold mb-2 text-indigo-700">{showEmail.subject}</h3>
-            <pre className="bg-gray-50 rounded p-4 text-sm text-gray-800 whitespace-pre-wrap">{showEmail.content}</pre>
+              </thead>
+              <tbody>
+                {mockEmailSequences.flatMap(seq =>
+                  seq.steps.map((step, idx) => (
+                    <tr key={seq.id + '-' + idx}>
+                      <td className="px-4 py-2 font-medium text-red-700">{seq.name}</td>
+                      <td className="px-4 py-2">{idx + 1}</td>
+                      <td className="px-4 py-2">Day {step.day}</td>
+                      <td className="px-4 py-2">{step.subject}</td>
+                      <td className="px-4 py-2 text-gray-500">{step.preview}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
-      )}
+        {/* Sent/Scheduled Emails */}
+        <div className="bg-white rounded-xl shadow p-6">
+          <div className="font-semibold text-gray-800 mb-2">Sent & Scheduled Emails</div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead>
+                <tr className="bg-red-50 text-red-900">
+                  <th className="px-4 py-2 text-left">To</th>
+                  <th className="px-4 py-2 text-left">Subject</th>
+                  <th className="px-4 py-2 text-left">Status</th>
+                  <th className="px-4 py-2 text-left">Sent At</th>
+                  <th className="px-4 py-2 text-left">Opened</th>
+                  <th className="px-4 py-2 text-left">Clicked</th>
+                  <th className="px-4 py-2 text-left">View</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mockSentEmails.map(email => (
+                  <tr key={email.id}>
+                    <td className="px-4 py-2">{email.to}</td>
+                    <td className="px-4 py-2">{email.subject}</td>
+                    <td className="px-4 py-2">{email.status}</td>
+                    <td className="px-4 py-2">{email.sentAt}</td>
+                    <td className="px-4 py-2">{email.opened ? '✔️' : ''}</td>
+                    <td className="px-4 py-2">{email.clicked ? '✔️' : ''}</td>
+                    <td className="px-4 py-2">
+                      <button className="text-red-600 underline" onClick={() => setShowEmail({subject: email.subject, content: email.content})}>View</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {/* Template Designer */}
+        <div className="bg-white rounded-xl shadow p-6">
+          <div className="font-semibold text-gray-800 mb-2">Email Template Designer</div>
+          <textarea
+            value={template}
+            onChange={e => setTemplate(e.target.value)}
+            className="w-full px-4 py-3 border rounded-lg min-h-[120px] font-mono"
+          />
+          <div className="text-xs text-gray-500 mt-2">Use <code>{'{{name}}'}</code> for personalization.</div>
+        </div>
+        {/* Email Content Modal */}
+        {showEmail && (
+          <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative animate-fadein">
+              <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setShowEmail(null)}>&times;</button>
+              <h3 className="text-xl font-bold mb-2 text-red-700">{showEmail.subject}</h3>
+              <pre className="bg-gray-50 rounded p-4 text-sm text-gray-800 whitespace-pre-wrap">{showEmail.content}</pre>
+            </div>
+          </div>
+        )}
+      </div>
+
     </div>
   );
 };
@@ -756,17 +822,23 @@ const Appointments = () => {
   };
 
   return (
-    <div className="space-y-8">
+
+    <div className="space-y-8 mt-24 pt-8">
+
       {/* Calendar View (simple table for demo) */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="flex justify-between items-center mb-2">
           <div className="font-semibold text-gray-800">Upcoming Appointments</div>
-          <button onClick={() => setShowAdd(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700">+ Schedule Appointment</button>
+
+          <button onClick={() => setShowAdd(true)} className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">+ Schedule Appointment</button>
+
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
+
+              <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Lead</th>
                 <th className="px-4 py-2 text-left">Type</th>
                 <th className="px-4 py-2 text-left">Date</th>
@@ -782,7 +854,9 @@ const Appointments = () => {
               )}
               {upcoming.map(a => (
                 <tr key={a.id}>
-                  <td className="px-4 py-2 font-medium text-indigo-700">{a.lead}</td>
+
+                  <td className="px-4 py-2 font-medium text-red-700">{a.lead}</td>
+
                   <td className="px-4 py-2">{a.type}</td>
                   <td className="px-4 py-2">{a.date}</td>
                   <td className="px-4 py-2">{a.time}</td>
@@ -803,7 +877,9 @@ const Appointments = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
+
+              <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Lead</th>
                 <th className="px-4 py-2 text-left">Type</th>
                 <th className="px-4 py-2 text-left">Date</th>
@@ -818,7 +894,9 @@ const Appointments = () => {
               )}
               {past.map(a => (
                 <tr key={a.id}>
-                  <td className="px-4 py-2 font-medium text-indigo-700">{a.lead}</td>
+
+                  <td className="px-4 py-2 font-medium text-red-700">{a.lead}</td>
+
                   <td className="px-4 py-2">{a.type}</td>
                   <td className="px-4 py-2">{a.date}</td>
                   <td className="px-4 py-2">{a.time}</td>
@@ -835,7 +913,9 @@ const Appointments = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <form className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md relative animate-fadein" onSubmit={handleAdd}>
             <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setShowAdd(false)} type="button">&times;</button>
-            <h3 className="text-xl font-bold mb-4 text-indigo-700">Schedule Appointment</h3>
+
+            <h3 className="text-xl font-bold mb-4 text-red-700">Schedule Appointment</h3>
+
             <div className="mb-3">
               <label className="block text-sm font-medium mb-1">Lead</label>
               <input name="lead" required className="w-full px-3 py-2 border rounded-lg" value={form.lead} onChange={e => setForm(f => ({ ...f, lead: e.target.value }))} />
@@ -861,7 +941,9 @@ const Appointments = () => {
               <label className="block text-sm font-medium mb-1">Notes</label>
               <input name="notes" className="w-full px-3 py-2 border rounded-lg" value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} />
             </div>
-            <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium w-full mt-2">Schedule</button>
+
+            <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium w-full mt-2">Schedule</button>
+
           </form>
         </div>
       )}
@@ -882,7 +964,9 @@ const LiveCallTransfers = () => {
   const [criteria, setCriteria] = useState('Lead requests agent OR AI qualifies as hot lead');
 
   return (
-    <div className="space-y-8">
+
+    <div className="space-y-8 mt-24 pt-8">
+
       {/* Transfer Config Panel */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">Live Transfer Settings</div>
@@ -900,7 +984,9 @@ const LiveCallTransfers = () => {
             <label className="block text-sm font-medium mb-1">Agent Availability</label>
             <button
               onClick={() => setAgentAvailable(a => !a)}
-              className={`px-4 py-2 rounded-lg font-medium ${agentAvailable ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-700'}`}
+
+              className={`px-4 py-2 rounded-lg font-medium ${agentAvailable ? 'bg-red-500 text-white' : 'bg-gray-300 text-gray-700'}`}
+
             >
               {agentAvailable ? 'Available for Transfers' : 'Unavailable'}
             </button>
@@ -914,7 +1000,9 @@ const LiveCallTransfers = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
+
+              <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Lead</th>
                 <th className="px-4 py-2 text-left">Agent</th>
                 <th className="px-4 py-2 text-left">Time</th>
@@ -929,7 +1017,9 @@ const LiveCallTransfers = () => {
               )}
               {mockTransferLogs.map(log => (
                 <tr key={log.id}>
-                  <td className="px-4 py-2 font-medium text-indigo-700">{log.lead}</td>
+
+                  <td className="px-4 py-2 font-medium text-red-700">{log.lead}</td>
+
                   <td className="px-4 py-2">{log.agent}</td>
                   <td className="px-4 py-2">{log.time}</td>
                   <td className="px-4 py-2">{log.status}</td>
@@ -970,7 +1060,9 @@ const ComplianceTools = () => {
   };
 
   return (
-    <div className="space-y-8">
+
+    <div className="space-y-8 mt-24 pt-8">
+
       {/* Consent Management */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">Consent & Opt-Out Management</div>
@@ -1033,7 +1125,9 @@ const ComplianceTools = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
+
+              <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Event</th>
                 <th className="px-4 py-2 text-left">Detail</th>
                 <th className="px-4 py-2 text-left">Date</th>
@@ -1045,7 +1139,9 @@ const ComplianceTools = () => {
               )}
               {mockAuditLog.map(log => (
                 <tr key={log.id}>
-                  <td className="px-4 py-2 font-medium text-indigo-700">{log.event}</td>
+
+                  <td className="px-4 py-2 font-medium text-red-700">{log.event}</td>
+
                   <td className="px-4 py-2">{log.detail}</td>
                   <td className="px-4 py-2">{log.date}</td>
                 </tr>
@@ -1091,7 +1187,9 @@ const SettingsAdmin = () => {
   };
 
   return (
-    <div className="space-y-8">
+
+    <div className="space-y-8 mt-24 pt-8">
+
       {/* User/Team Management */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">User & Team Management</div>
@@ -1102,12 +1200,16 @@ const SettingsAdmin = () => {
             <option>Agent</option>
             <option>Manager</option>
           </select>
-          <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700">Add User</button>
+
+          <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">Add User</button>
+
         </form>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
+
+              <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Name</th>
                 <th className="px-4 py-2 text-left">Email</th>
                 <th className="px-4 py-2 text-left">Role</th>
@@ -1118,7 +1220,9 @@ const SettingsAdmin = () => {
             <tbody>
               {users.map(u => (
                 <tr key={u.id}>
-                  <td className="px-4 py-2 font-medium text-indigo-700">{u.name}</td>
+
+                  <td className="px-4 py-2 font-medium text-red-700">{u.name}</td>
+
                   <td className="px-4 py-2">{u.email}</td>
                   <td className="px-4 py-2">{u.role}</td>
                   <td className="px-4 py-2">{u.lastLogin}</td>
@@ -1149,11 +1253,13 @@ const SettingsAdmin = () => {
       {/* Billing Info */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">Billing & Plan</div>
-        <div className="mb-2">Current Plan: <span className="font-semibold text-indigo-700">{plan}</span></div>
+
+        <div className="mb-2">Current Plan: <span className="font-semibold text-red-700">{plan}</span></div>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
-              <tr className="bg-indigo-50 text-indigo-900">
+              <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Date</th>
                 <th className="px-4 py-2 text-left">Amount</th>
                 <th className="px-4 py-2 text-left">Status</th>
@@ -1192,7 +1298,9 @@ const SettingsAdmin = () => {
       {/* Support/Help */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">Support & Help</div>
-        <ul className="list-disc pl-6 text-indigo-700">
+
+        <ul className="list-disc pl-6 text-red-700">
+
           <li><a href="#" className="underline">Knowledge Base</a></li>
           <li><a href="#" className="underline">Contact Support</a></li>
           <li><a href="#" className="underline">User Guide</a></li>
@@ -1305,23 +1413,33 @@ export const FreeSystemDemo: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-br from-white via-indigo-50 to-purple-50">
+
+    <div className="min-h-screen flex bg-gradient-to-br from-white via-red-50 to-rose-50">
       {/* Left-side menu */}
       <nav className="w-64 bg-white/90 border-r border-gray-200 p-6 flex flex-col space-y-2 shadow-lg">
         {menuItems.map(item => (
-                <button
+          <button
             key={item.key}
-            className={`text-left px-4 py-2 rounded-lg font-medium transition-colors ${activeSection === item.key ? 'bg-indigo-100 text-indigo-700' : 'hover:bg-indigo-50 text-gray-700'}`}
+            className={`text-left px-4 py-2 rounded-lg transition-colors ${
+              item.key === 'dashboard'
+                ? 'italic underline text-xl font-bold text-red-900'
+                : activeSection === item.key 
+                  ? 'bg-red-100 text-red-700 font-medium' 
+                  : 'hover:bg-red-50 text-gray-700 font-medium'
+            }`}
             onClick={() => setActiveSection(item.key)}
           >
             {item.label}
-                </button>
+          </button>
+
         ))}
       </nav>
       {/* Main content area */}
       <main className="flex-1 p-8 overflow-y-auto">
         {content}
       </main>
-      </div>
+
+    </div>
+
   );
 };
