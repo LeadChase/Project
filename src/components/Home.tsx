@@ -1,19 +1,28 @@
 import { useEffect } from 'react';
 import { Hero } from './Hero.js';
 import { Features } from './Features.js';
-import { HowItWorks } from './HowItWorks.js';
-import { Testimonials } from './Testimonials.js';
-import { Pricing } from './Pricing.js';
+import { ComesToRescue } from './ComesToRescue.js';
 import { Contact } from './Contact.js';
 import { FeatureShowcase } from './FeatureShowcase.js';
+import { AIToolsSection } from './AIToolsSection.js';
 import { TrustedTools } from './TrustedTools.js';
+import {MakeDifferent} from './MakeDifferent.js'
 
 export function Home() {
   useEffect(() => {
-    document.title = 'LeadChoose | AI-Powered Real Estate Lead Generation';
+    document.title = 'LeadChoose | AI Calling, Texting & Appointment Setting.';
     const link = document.querySelector("link[rel='icon']") as HTMLLinkElement;
     if (link) {
-      link.href = 'data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><text y=\".9em\" font-size=\"90\">🏠</text></svg>';
+      // Assuming you placed your downloaded image (e.g., 'my-favicon.png')
+      // in the 'public' folder of your project.
+      // The path starts with '/' to indicate the root of your public directory.
+      link.href = '/LeadChoose.jpeg'; // <--- Change this to your image's path and name
+    } else {
+      // If no favicon link exists, create one
+      const newLink = document.createElement('link');
+      newLink.rel = 'icon';
+      newLink.href = '/LeadChoose.jpeg'; // <--- Change this to your image's path and name
+      document.head.appendChild(newLink);
     }
   }, []);
 
@@ -22,11 +31,11 @@ export function Home() {
       <main>
         <Hero />
         <Features />
-        <HowItWorks />
-        <Testimonials />
+        <ComesToRescue />
         <FeatureShowcase />
+        <AIToolsSection />
+        <MakeDifferent />
         <TrustedTools />
-        <Pricing />
         <Contact />
       </main>
     </div>

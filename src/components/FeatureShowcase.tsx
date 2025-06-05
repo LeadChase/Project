@@ -1,54 +1,62 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Mail, RefreshCw, Home, ShieldCheck } from 'lucide-react';
+import { Mail, Target, PhoneCall, HeartHandshake, Link } from 'lucide-react'; // Updated imports for new icons
 
 const features = [
   {
     icon: <Mail className="w-7 h-7" />, color: 'bg-indigo-500',
-    title: 'Multi-Channel AI Engagement',
-    description: 'Go beyond basic drips. Let AI qualify leads via personalized Email, SMS, and natural Voice conversations.',
+    title: 'Lead Intake / Engagement Begins',
+    description: 'AI texts, calls, and emails your leads. This happens immediately after a lead is captured.',
     tags: [
       { label: 'Email', color: 'bg-indigo-100 text-indigo-700' },
-      { label: 'SMS', color: 'bg-purple-100 text-purple-700' },
-      { label: 'Voice', color: 'bg-green-100 text-green-700' },
+      { label: 'SMS', color: 'bg-red-100 text-red-700' },
+      { label: 'Call', color: 'bg-green-100 text-green-700' },
     ]
   },
   {
-    icon: <RefreshCw className="w-7 h-7" />, color: 'bg-blue-500',
-    title: 'Seamless CRM Integration',
-    description: 'Keep your workflow smooth. Flawless, two-way sync with Salesforce and HubSpot.',
+    icon: <Target className="w-7 h-7" />, color: 'bg-blue-500', // Changed icon to Target
+    title: 'Qualification Starts',
+    description: 'AI calls and qualifies your leads, transferring the most valuable to you. Lead qualifying conversation. AI determines if the lead is worth pursuing.',
     tags: [
-      { label: 'HubSpot', color: 'bg-gray-100 text-gray-700' },
-      { label: 'Connected', color: 'bg-green-100 text-green-700' },
-      { label: 'Salesforce', color: 'bg-gray-100 text-gray-700' },
-      { label: 'Connected', color: 'bg-green-100 text-green-700' },
+      { label: 'Qualified', color: 'bg-blue-100 text-blue-700' },
+      { label: 'Hot Leads', color: 'bg-red-100 text-red-700' },
+      { label: 'Unqualified', color: 'bg-gray-100 text-gray-700' },
     ]
   },
   {
-    icon: <Home className="w-7 h-7" />, color: 'bg-green-500',
-    title: 'Integrated Lead & Property Hub',
-    description: 'Connect the dots instantly. Manage leads and listings in one place, with smart matching based on buyer preferences.',
+    icon: <PhoneCall className="w-7 h-7" />, color: 'bg-green-500', // Changed icon to PhoneCall
+    title: 'Appointments and Live Transfers',
+    description: 'Appointment setting. Live call transfers with qualified leads. AI either schedules an appointment or connects to a human agent.',
     tags: [
-      { label: 'Leads', color: 'bg-green-100 text-green-700' },
-      { label: 'Properties', color: 'bg-teal-100 text-teal-700' },
+      { label: 'Appointments Setter', color: 'bg-green-100 text-green-700' },
+      { label: 'Live Calls', color: 'bg-teal-100 text-teal-700' },
     ]
   },
   {
-    icon: <ShieldCheck className="w-7 h-7" />, color: 'bg-yellow-500',
-    title: 'Designed Exclusively for Real Estate',
-    description: 'No generic bloat. An intuitive interface and features built around your daily needs as an agent.',
+    icon: <HeartHandshake className="w-7 h-7" />, color: 'bg-yellow-500',
+    title: 'Long-Term Nurture for Cold Leads',
+    description: 'Long term drip campaigns. Automated rescheduling based on lead\'s timeline. If a lead isn\'t ready now, AI keeps engaging them for months.',
     tags: [
-      { label: 'Listings', color: 'bg-yellow-100 text-yellow-700' },
-      { label: 'Leads', color: 'bg-orange-100 text-orange-700' },
+      { label: 'Drip Campaigns', color: 'bg-yellow-100 text-yellow-700' },
       { label: 'Follow-ups', color: 'bg-orange-100 text-orange-700' },
-      { label: 'Analytics', color: 'bg-purple-100 text-purple-700' },
+      { label: 'Re-engagement', color: 'bg-rose-100 text-rose-700' },
+    ]
+  },
+  {
+    icon: <Link className="w-7 h-7" />, color: 'bg-yellow-500',
+    title: 'CRM Logging and Syncing',
+    description: 'Integrated with your CRM. Realtime notifications and data syncing. All actions, messages, and outcomes are logged automatically.',
+    tags: [
+      { label: 'CRM Updated', color: 'bg-yellow-100 text-yellow-700' },
+      { label: 'Data Sync', color: 'bg-orange-100 text-orange-700' },
+      { label: 'HubSpot', color: 'bg-gray-100 text-gray-700' },
+      { label: 'Salesforce', color: 'bg-gray-100 text-gray-700' },
     ]
   },
 ];
 
 export const FeatureShowcase: React.FC = () => {
-  // Animation: reveal on scroll
   const containerRef = useRef<HTMLDivElement>(null);
-  const [inViewArr, setInViewArr] = useState(features.map(() => false));
+  const [inViewArr, setInViewArr] = useState<boolean[]>(new Array(features.length).fill(false));
 
   useEffect(() => {
     const nodes = containerRef.current?.querySelectorAll('.feature-card') ?? [];
@@ -70,17 +78,16 @@ export const FeatureShowcase: React.FC = () => {
     );
     nodes.forEach((node) => observer.observe(node));
     return () => observer.disconnect();
-  }, []);
+  }, [features.length]);
 
   return (
-    <section className="py-16 bg-transparent relative overflow-x-clip">
+    <section id="how-it-works" className="py-16 bg-transparent relative overflow-x-clip">
       {/* Soft background glow */}
-      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[220px] bg-indigo-300/10 rounded-full blur-3xl z-0"></div>
+      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[220px] bg-red-300/10 rounded-full blur-3xl z-0"></div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-            Get Ready for Intelligent Automation,<br className="hidden md:block" />
-            <span className="text-purple-600">Built for You:</span>
+            Here Is <span className="text-red-600">How It Works</span>
           </h2>
         </div>
         <div
@@ -102,8 +109,21 @@ export const FeatureShowcase: React.FC = () => {
               {/* Content */}
               <div className="flex-1">
                 <div className="font-bold text-gray-900 text-lg md:text-xl mb-1">{f.title}</div>
-                <div className="text-gray-700 text-base md:text-lg mb-2">{f.description}</div>
-                <div className="flex flex-wrap gap-2 mt-2">
+                <ul className="list-none p-0 m-0 text-gray-700 text-base md:text-lg">
+                  {f.description.split('. ').filter(Boolean).map((line, lineIndex) => (
+                    <li
+                      key={`${f.title}-${lineIndex}`}
+                      className={`flex items-start mb-1 transition-all duration-500 ${
+                        inViewArr[i] ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                      }`}
+                      style={{ transitionDelay: `${i * 120 + lineIndex * 50}ms` }}
+                    >
+                      <span className="flex-shrink-0 w-2 h-2 rounded-full bg-red-400 mt-2 mr-2"></span>
+                      {line.trim() + (lineIndex < f.description.split('. ').filter(Boolean).length - 1 ? '.' : '')}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
                   {f.tags.map((tag, j) => (
                     <span
                       key={tag.label + j}
@@ -129,4 +149,4 @@ export const FeatureShowcase: React.FC = () => {
       `}</style>
     </section>
   );
-}; 
+};

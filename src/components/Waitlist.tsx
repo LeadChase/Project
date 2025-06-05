@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Send as SendIcon } from 'lucide-react';
 
 interface FormData {
   email: string;
@@ -71,14 +72,14 @@ export function Waitlist() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-red-50 to-white py-12 px-4 sm:px-6 lg:px-8 mt-14">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Join the LeadChoose Waitlist
+            Convert More Leads Into <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">Closed Deals With AI.</span>
           </h1>
           <p className="text-xl text-gray-600">
-            Be among the first to experience AI-powered lead generation for real estate
+            Automate your sales with AI calling, texting, appointment setting, & live phone transfers.
           </p>
         </div>
 
@@ -95,7 +96,7 @@ export function Waitlist() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                 placeholder="you@example.com"
               />
             </div>
@@ -111,7 +112,7 @@ export function Waitlist() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                 placeholder="John Doe"
               />
             </div>
@@ -126,7 +127,7 @@ export function Waitlist() {
                 id="company"
                 value={formData.company}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                 placeholder="Your Real Estate Company"
               />
             </div>
@@ -141,7 +142,7 @@ export function Waitlist() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                 placeholder="Tell us what you're most excited about..."
               />
             </div>
@@ -150,11 +151,18 @@ export function Waitlist() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+                className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 text-white font-medium text-lg shadow-lg hover:shadow-xl hover:from-red-700 hover:to-rose-700 transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
                   isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
                 }`}
               >
-                {isSubmitting ? 'Submitting...' : 'Join Waitlist'}
+                {isSubmitting ? (
+                  'Submitting...'
+                ) : (
+                  <span className="flex items-center justify-center">
+                    Join the waitlist
+                    <SendIcon className="h-5 w-5 ml-2" />
+                  </span>
+                )}
               </button>
             </div>
 
@@ -175,19 +183,19 @@ export function Waitlist() {
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <span className="flex-shrink-0 h-6 w-6 text-indigo-600">✨</span>
+                <span className="flex-shrink-0 h-6 w-6 text-red-600">✨</span>
                 <span className="ml-3">Early access to LeadChoose platform</span>
               </li>
               <li className="flex items-start">
-                <span className="flex-shrink-0 h-6 w-6 text-indigo-600">💰</span>
+                <span className="flex-shrink-0 h-6 w-6 text-red-600">💰</span>
                 <span className="ml-3">50% discount on launch pricing</span>
               </li>
               <li className="flex items-start">
-                <span className="flex-shrink-0 h-6 w-6 text-indigo-600">🎯</span>
+                <span className="flex-shrink-0 h-6 w-6 text-red-600">🎯</span>
                 <span className="ml-3">Priority onboarding and support</span>
               </li>
               <li className="flex items-start">
-                <span className="flex-shrink-0 h-6 w-6 text-indigo-600">🔔</span>
+                <span className="flex-shrink-0 h-6 w-6 text-red-600">🔔</span>
                 <span className="ml-3">Exclusive updates and feature previews</span>
               </li>
             </ul>

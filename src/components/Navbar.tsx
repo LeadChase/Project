@@ -4,9 +4,9 @@ import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo.js';
 
 const navLinks = [
-  { name: 'Why LeadFlow?', href: '/#pain-points' },
-  { name: 'Smart Platform', href: '/#features' },
-  { name: 'Unlock Benefits', href: '/#perks' },
+  { name: 'Why LeadChoose', href: '/#differentiators' },
+  { name: 'How It Works', href: '/#how-it-works' },
+  { name: 'Free System Demo', href: '/freeSystemDemo' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -75,14 +75,14 @@ export const Navbar: React.FC = () => {
                   className={`
                     relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full
                     ${isActive 
-                      ? 'text-indigo-600 bg-indigo-50' 
-                      : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50/70'
+                      ? 'text-red-600 bg-red-50' 
+                      : 'text-gray-600 hover:text-red-600 hover:bg-red-50/70'
                     }
                     hover:-translate-y-0.5 hover:shadow-sm
                   `}
                 >
                   {link.name}
-                  <span className={`absolute bottom-1.5 left-1/2 transform -translate-x-1/2 h-1 bg-indigo-500 rounded-full transition-all duration-300 ${isActive ? 'w-1/3 opacity-100' : 'w-0 opacity-0'}`}></span>
+                  <span className={`absolute bottom-1.5 left-1/2 transform -translate-x-1/2 h-1 bg-red-500 rounded-full transition-all duration-300 ${isActive ? 'w-1/3 opacity-100' : 'w-0 opacity-0'}`}></span>
                 </a>
               );
             })}
@@ -93,17 +93,17 @@ export const Navbar: React.FC = () => {
             to="/join-waitlist"
             className="
               relative overflow-hidden ml-6 px-6 py-2.5 rounded-full 
-              bg-gradient-to-r from-indigo-500 to-violet-500 
+              bg-gradient-to-r from-red-500 to-rose-500 
               text-white text-sm font-medium
               transition-all duration-300
-              hover:shadow-lg hover:shadow-indigo-500/30
+              hover:shadow-lg hover:shadow-red-500/30
               hover:-translate-y-0.5
-              focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
+              focus:ring-2 focus:ring-red-500 focus:ring-offset-2
               group-hover:animate-pulse
             "
           >
             <span className="relative z-10">Join Waitlist</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600 opacity-0 transition-opacity duration-300 hover:opacity-100"></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-red-600 to-rose-600 opacity-0 transition-opacity duration-300 hover:opacity-100"></span>
           </Link>
         </div>
         
@@ -123,9 +123,9 @@ export const Navbar: React.FC = () => {
               text-gray-700 bg-white/80 backdrop-blur-sm
               border border-gray-100 shadow-sm
               transition-all duration-300
-              hover:text-indigo-500 hover:bg-white
+              hover:text-red-500 hover:bg-white
               hover:shadow-md hover:scale-105
-              focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500
+              focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500
             "
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -149,7 +149,7 @@ export const Navbar: React.FC = () => {
                 href={link.href}
                 className="
                   block px-3 py-2 rounded-md text-base font-medium 
-                  text-gray-700 hover:text-indigo-600 hover:bg-indigo-50
+                  text-gray-700 hover:text-red-600 hover:bg-red-50
                   transition-all duration-300 hover:translate-x-1
                 "
                 onClick={() => setIsMenuOpen(false)}
@@ -161,11 +161,11 @@ export const Navbar: React.FC = () => {
               to="/join-waitlist"
               className="
                 block w-full text-center mt-3 px-4 py-2 rounded-full 
-                bg-gradient-to-r from-indigo-500 to-violet-500 
+                bg-gradient-to-r from-red-500 to-rose-500 
                 text-white text-base font-medium
                 transition-all duration-300
-                hover:shadow-md hover:shadow-indigo-500/20
-                hover:from-indigo-600 hover:to-violet-600
+                hover:shadow-md hover:shadow-red-500/20
+                hover:from-red-600 hover:to-rose-600
                 hover:translate-y-[-2px]
               "
               onClick={() => setIsMenuOpen(false)}

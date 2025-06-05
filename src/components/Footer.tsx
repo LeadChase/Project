@@ -27,13 +27,12 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative pt-20 pb-8 bg-transparent overflow-x-clip">
       {/* Animated gradient glow */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[320px] bg-gradient-to-tr from-indigo-400/20 via-purple-400/20 to-teal-300/20 rounded-full blur-3xl z-0 animate-footerGlow" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[320px] bg-gradient-to-tr from-red-400/20 via-rose-400/20 to-teal-300/20 rounded-full blur-3xl z-0 animate-footerGlow" />
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} ref={sectionRef}>
         {/* Top row: logo + socials */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-8 md:gap-0">
           <div className="flex items-center gap-6">
             <Logo />
-            <span className="text-lg font-semibold text-gray-800 hidden sm:inline-block">LeadFlow</span>
           </div>
           <div className="flex space-x-3 mt-2 md:mt-0">
             {[{
@@ -50,7 +49,7 @@ export const Footer: React.FC = () => {
               <a
                 key={i}
                 href={s.href}
-                className="group bg-white/60 backdrop-blur-md rounded-full p-2 shadow-md transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-400/30 hover:to-purple-400/30 hover:scale-110"
+                className="group bg-white/60 backdrop-blur-md rounded-full p-2 shadow-md transition-all duration-300 hover:bg-gradient-to-tr hover:from-red-400/30 hover:to-rose-400/30 hover:scale-110"
                 tabIndex={0}
               >
                 <span className="text-gray-500 group-hover:text-teal-500 transition-colors">{s.icon}</span>
@@ -62,7 +61,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div className="lg:col-span-1">
             <p className="text-gray-500 mb-8 max-w-md">
-              LeadFlow helps real estate agents nurture leads automatically across Email, SMS & Voice. Focus on what matters most — closing deals.
+              LeadChoose helps real estate agents nurture leads automatically across Email, SMS & Voice. Focus on what matters most — closing deals.
             </p>
           </div>
           <div>
@@ -99,7 +98,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} LeadFlow. All rights reserved.
+            &copy; {new Date().getFullYear()} LeadChoose. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="footer-link text-sm">Privacy Policy</a>
@@ -108,7 +107,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mt-6 text-center md:text-left text-gray-500 text-sm">
-          Made with <Heart className="h-4 w-4 inline-block text-red-500 animate-heartbeat" /> by the LeadFlow team
+          Made with <Heart className="h-4 w-4 inline-block text-red-500 animate-heartbeat" /> by the LeadChoose team
         </div>
       </div>
       <style>{`

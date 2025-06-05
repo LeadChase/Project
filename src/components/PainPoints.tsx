@@ -1,44 +1,34 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Clock } from 'lucide-react';
+import React, { useRef, useEffect, useState } from 'react'; // Import useRef, useEffect, useState
 
-const painPoints = [
-  {
-    time: '9:00 AM',
-    title: 'Morning Follow-ups',
-    description: 'Starting your day with endless manual follow-ups on leads that go nowhere.'
-  },
-  {
-    time: '11:30 AM',
-    title: 'Missed Hot Lead',
-    description: 'Another hot lead slips through the cracks due to delayed responses.'
-  },
-  {
-    time: '2:00 PM',
-    title: 'Data Management Chaos',
-    description: 'Wasting hours juggling between spreadsheets, CRM, and property lists.'
-  },
-  {
-    time: '4:30 PM',
-    title: 'Missed Connections',
-    description: 'Perfect listing for a buyer found too late - they\'ve already made an offer elsewhere.'
-  },
-  {
-    time: '6:00 PM',
-    title: 'End-of-Day Frustration',
-    description: 'Reviewing generic autoresponder messages that failed to engage prospects.'
-  },
+const allPainPointsTitles = [
+  'Leads Ghost or Disappear',
+  'Too Much Time Is Spend On Bad Leads',
+  'Unqualified Leads Clog Your Pipeline',
+  'Time Is Spend On Admin Not Selling',
+  'Agents Are Overwhelmed By Unqualified Leads',
+  'Leads Are Forgotten Or Neglected',
+  'No Clarity On Lead Source/Contact',
+  'Slow Response Times',
+  'Low Conversion Despite High Volume',
+  'Can’t Remember Follow-ups/Contacts',
 ];
 
+// Split the titles into two columns
+const leftColumnTitles = allPainPointsTitles.slice(0, 5);
+const rightColumnTitles = allPainPointsTitles.slice(5, 10);
+
 export const PainPoints: React.FC = () => {
+  // Animation: reveal on scroll
   const containerRef = useRef<HTMLDivElement>(null);
-  const [inViewArr, setInViewArr] = useState(painPoints.map(() => false));
+  const [inViewArr, setInViewArr] = useState(allPainPointsTitles.map(() => false)); // Use allPainPointsTitles for state length
 
   useEffect(() => {
-    const nodes = containerRef.current?.querySelectorAll('.painpoint-step') ?? [];
+    // Select all list items directly to observe their visibility
+    const nodes = containerRef.current?.querySelectorAll('.painpoint-list-item') ?? [];
     const observer = new window.IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const idx = Number((entry.target as HTMLElement).getAttribute('data-step'));
+          const idx = Number((entry.target as HTMLElement).getAttribute('data-index'));
           if (entry.isIntersecting) {
             setInViewArr((prev) => {
               if (prev[idx]) return prev;
@@ -57,57 +47,86 @@ export const PainPoints: React.FC = () => {
 
   return (
     <section className="py-20 bg-white" id="pain-points">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Sound Familiar? You&apos;re Losing Hours (and Deals) To...
+            Reasons You Are Missing Opportunities…
           </h2>
         </div>
-        <div className="relative">
-          {/* Vertical timeline line (background) */}
-          <div className="absolute left-2.5 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-200 to-indigo-100 rounded-full opacity-60" style={{ zIndex: 0 }} />
-          <div className="flex flex-col relative z-10" ref={containerRef}>
-            {painPoints.map((point, index) => (
-              <div
-                className={`painpoint-step flex items-start group transition-all duration-700 ${inViewArr[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                data-step={index}
-                key={index}
-                tabIndex={0}
-                style={{ outline: 'none', transitionDelay: `${index * 120}ms` }}
-              >
-                {/* Timeline indicator */}
-                <div className="flex flex-col items-center mr-6">
-                  <div className="relative z-10">
-                    <div className="w-6 h-6 rounded-full border-4 border-purple-400 bg-white shadow-md flex items-center justify-center">
-                      <Clock className="h-4 w-4 text-purple-500" />
-                    </div>
-                    <div className="text-xs text-gray-500 mt-1 font-medium">{point.time}</div>
-                  </div>
-                  {/* Connecting line */}
-                  {index !== painPoints.length - 1 && (
-                    <div className="w-1 h-full bg-gradient-to-b from-purple-200 to-indigo-100 opacity-70 mt-1 mb-1 animate-growline" style={{ minHeight: 48 }} />
-                  )}
-                </div>
-                {/* Card */}
-                <div className="flex-1 mb-8">
-                  <div className="bg-white/90 rounded-xl shadow-lg border border-gray-100 px-6 py-5">
-                    <div className="font-bold text-gray-900 text-lg mb-1">{point.title}</div>
-                    <div className="text-gray-600 text-base">{point.description}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
+        
+        {/* Table-like grid for the titles */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4"
+          ref={containerRef} // Attach ref to the grid container
+        >
+          {/* Left Column */}
+          <div>
+            <ul className="list-none p-0 m-0">
+              {leftColumnTitles.map((title, index) => (
+                <li
+                  key={`left-${index}`}
+                  className={`painpoint-list-item flex items-center mb-3 transition-all duration-700 ${
+                    inViewArr[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  data-index={index} // Add data-index for observation
+                  style={{ transitionDelay: `${index * 80}ms` }}
+                >
+                  <span
+                    className={`text-red-500 font-bold text-lg leading-none mr-2 transition-transform duration-500 ${
+                      inViewArr[index] ? 'animate-pop-icon' : 'scale-0' // Apply animation class
+                    }`}
+                  >
+                    !
+                  </span>
+                  <span className="text-gray-800 text-lg font-medium">{title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right Column */}
+          <div>
+            <ul className="list-none p-0 m-0">
+              {rightColumnTitles.map((title, index) => (
+                <li
+                  key={`right-${index}`}
+                  className={`painpoint-list-item flex items-center mb-3 transition-all duration-700 ${
+                    inViewArr[index + leftColumnTitles.length] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  data-index={index + leftColumnTitles.length} // Adjust index for right column
+                  style={{ transitionDelay: `${(index + leftColumnTitles.length) * 80}ms` }}
+                >
+                  <span
+                    className={`text-red-500 font-bold text-lg leading-none mr-2 transition-transform duration-500 ${
+                      inViewArr[index + leftColumnTitles.length] ? 'animate-pop-icon' : 'scale-0' // Apply animation class
+                    }`}
+                  >
+                    !
+                  </span>
+                  <span className="text-gray-800 text-lg font-medium">{title}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
+
+      {/* Added text below the table */}
+      <div className="text-center mt-12 text-gray-700 text-xl font-semibold">
+        And a Lot More You Have Heard Yourself…
+      </div>
+
+      {/* CSS for the animation */}
       <style>{`
-        .painpoint-step { transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1); }
-        @keyframes growline {
-          from { height: 0; }
-          to { height: 100%; }
+        @keyframes pop-icon {
+          0% { transform: scale(0); opacity: 0; }
+          70% { transform: scale(1.2); opacity: 1; }
+          100% { transform: scale(1); opacity: 1; }
         }
-        .animate-growline { animation: growline 1.2s cubic-bezier(.4,0,.2,1) both; }
+        .animate-pop-icon {
+          animation: pop-icon 0.5s cubic-bezier(.4,0,.2,1) forwards;
+        }
       `}</style>
     </section>
   );
-}; 
+};

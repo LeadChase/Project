@@ -107,10 +107,10 @@ export const Pricing: React.FC = () => {
   }, [plans.length]);
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-white relative overflow-x-clip">
+    <section id="pricing" className="py-20 bg-gradient-to-br from-red-50 via-rose-50 to-white relative overflow-x-clip">
       {/* Soft background glow */}
-      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] bg-indigo-300/20 rounded-full blur-3xl z-0"></div>
-      <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-purple-300/20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] bg-red-300/20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-rose-300/20 rounded-full blur-3xl z-0"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -123,7 +123,7 @@ export const Pricing: React.FC = () => {
           <div className="flex justify-center mt-8">
             <div className="inline-flex p-1 rounded-full bg-gray-100 border border-gray-200 shadow-inner relative overflow-hidden w-[260px] h-10">
               <span
-                className="absolute top-1 left-1 h-8 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 transition-all duration-500 z-0"
+                className="absolute top-1 left-1 h-8 rounded-full bg-gradient-to-r from-red-400 to-rose-400 transition-all duration-500 z-0"
                 style={{
                   width: 'calc(50% - 8px)',
                   transform: billingCycle === 'annual' ? 'translateX(100%)' : 'translateX(0%)',
@@ -185,16 +185,16 @@ export const Pricing: React.FC = () => {
                   <span className="text-gray-600 text-base">{plan.period}</span>
                 </div>
                 <button
-                  className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 ${
+                  className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 ${
                     plan.popular
-                      ? 'bg-gradient-to-r from-teal-500 to-teal-600 text-white hover:from-teal-600 hover:to-teal-700'
+                      ? 'bg-gradient-to-r from-red-500 to-rose-600 text-white hover:from-red-600 hover:to-rose-700'
                       : 'bg-gray-900 text-white hover:bg-gray-800'
                   }`}
                 >
                   {plan.cta}
                 </button>
               </div>
-              <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-white/80 p-8 border-t border-gray-200">
+              <div className="bg-gradient-to-br from-red-50 via-rose-50 to-white/80 p-8 border-t border-gray-200">
                 <p className="font-medium text-gray-900 mb-4">Features include:</p>
                 <ul className="space-y-3">
                   {plan.features.map((feature, featureIndex) => (
