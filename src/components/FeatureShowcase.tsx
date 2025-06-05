@@ -32,6 +32,7 @@ const features = [
     ]
   },
   {
+
     icon: <HeartHandshake className="w-7 h-7" />, color: 'bg-yellow-500',
     title: 'Long-Term Nurture for Cold Leads',
     description: 'Long term drip campaigns. Automated rescheduling based on lead\'s timeline. If a lead isn\'t ready now, AI keeps engaging them for months.',
@@ -43,6 +44,7 @@ const features = [
   },
   {
     icon: <Link className="w-7 h-7" />, color: 'bg-yellow-500',
+
     title: 'CRM Logging and Syncing',
     description: 'Integrated with your CRM. Realtime notifications and data syncing. All actions, messages, and outcomes are logged automatically.',
     tags: [
@@ -59,7 +61,8 @@ export const FeatureShowcase: React.FC = () => {
   const [inViewArr, setInViewArr] = useState<boolean[]>(new Array(features.length).fill(false));
 
   useEffect(() => {
-    const nodes = containerRef.current?.querySelectorAll('.feature-card') ?? [];
+    const nodes =
+containerRef.current?.querySelectorAll('.feature-card') ?? [];
     const observer = new window.IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -87,6 +90,7 @@ export const FeatureShowcase: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+
             Here Is <span className="text-red-600">How It Works</span>
           </h2>
         </div>
@@ -116,6 +120,7 @@ export const FeatureShowcase: React.FC = () => {
                       className={`flex items-start mb-1 transition-all duration-500 ${
                         inViewArr[i] ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
                       }`}
+
                       style={{ transitionDelay: `${i * 120 + lineIndex * 50}ms` }}
                     >
                       <span className="flex-shrink-0 w-2 h-2 rounded-full bg-red-400 mt-2 mr-2"></span>
@@ -125,6 +130,7 @@ export const FeatureShowcase: React.FC = () => {
                 </ul>
                 <div className="flex flex-wrap gap-2 mt-4">
                   {f.tags.map((tag, j) => (
+
                     <span
                       key={tag.label + j}
                       className={`px-3 py-1 rounded-full text-xs font-semibold shadow-sm transition-all duration-300 animate-tagfade ${tag.color}`}
@@ -149,4 +155,6 @@ export const FeatureShowcase: React.FC = () => {
       `}</style>
     </section>
   );
+
 };
+

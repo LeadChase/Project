@@ -18,11 +18,13 @@ const differentiators = [
     icon: <Clock className="w-7 h-7" />,
     color: 'bg-yellow-500',
     title: 'Speed',
+
     description: 'No more waiting to get your question answered with a slow support ticket. We are available 24/7 to answer any question and solve every problem, so you\'re never left alone with an issue that might slow down your work.',
   },
   {
     icon: <Zap className="w-7 h-7" />,
     color: 'bg-red-500',
+
     title: 'Specialization',
     description: 'Jack of all trades... Master of none. Specialization works. That\'s why we work with the industry we know, so we can guarantee results.',
   },

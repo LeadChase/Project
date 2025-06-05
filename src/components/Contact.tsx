@@ -71,7 +71,9 @@ export const Contact: React.FC = () => {
           {/* Benefits */}
           <div className="space-y-8">
             <h2 className="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">Join the Waitlist & Lock In Lifetime Benefits</span>
+
             </h2>
             <p className="text-xl text-gray-600 mb-8">
               <span className="font-semibold">Get early access & all the benefits before we close the list.</span>
@@ -85,6 +87,7 @@ export const Contact: React.FC = () => {
                 >
     
                   <span className="flex-shrink-0 mt-1 mr-4">
+
                 <CheckCircle2 className={`h-8 w-8 text-red-500 drop-shadow-md transition-transform duration-500`} />
               </span>
                   <div>
@@ -109,8 +112,10 @@ export const Contact: React.FC = () => {
                   Enter Your Email Below To Join The LeadChoose Waitlist.
                 </h3>
                 <p className="text-xl text-gray-600 mb-8">
+
                   <span className="font-semibold">An Automation System That Helps Agents Turn More Raw Leads Into Appointments and Closings.</span>
                 </p>
+
                 {formState.submitted ? (
                   <div className="text-center p-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-500 mb-4">
@@ -120,6 +125,7 @@ export const Contact: React.FC = () => {
                     <p className="text-gray-600">We'll be in touch soon with your exclusive access.</p>
                   </div>
                 ) : (
+
                   <div className="waitlist-form-container glassmorphism" data-appear="slide-up" data-delay="0.2">
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -197,6 +203,7 @@ export const Contact: React.FC = () => {
                           </span>
                         ) : (
                           <span className="flex items-center justify-center">
+
                           Join the waitlist and save 50%
                           <SendIcon className="h-5 w-5 ml-2" />
                         </span>

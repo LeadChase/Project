@@ -59,7 +59,9 @@ export const Hero: React.FC = () => {
         {/* Main Heading - Refined spacing and responsive sizes */}
         <div className="max-w-[800px] mx-auto text-center mb-16">
           <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.25rem] font-bold text-gray-900 mb-6 md:mb-8 leading-[1.1] md:leading-[1.15] tracking-tight">
+
             Convert More Raw Leads Into <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">Appointments & Closings.</span>
+
           </h1>
           
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed px-4">

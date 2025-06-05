@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import { Check, Users, Phone, MessageCircle, Calendar, TrendingUp, AlertTriangle, PieChart } from 'lucide-react';
 
 // Placeholder components for each SaaS module
+
 const DemoHome = () => <div className="mt-24 pt-8 p-8">
   <h1 className="text-2xl font-bold text-red-600">Welcome to the Real Estate Lead Automation SaaS Demo.</h1>
   <p className="mt-4 text-lg font-semibold text-red-500">Use the menu to explore features.</p>
 </div>;
 
+
 // --- Dashboard Component ---
 const mockDashboard = {
   metrics: [
+
     { label: 'New Leads (Today)', value: 12, icon: <Users className="h-6 w-6 text-red-500" /> },
     { label: 'AI Calls (Today)', value: 34, icon: <Phone className="h-6 w-6 text-green-500" /> },
     { label: 'AI Texts (Today)', value: 58, icon: <MessageCircle className="h-6 w-6 text-blue-500" /> },
     { label: 'Appointments Set', value: 7, icon: <Calendar className="h-6 w-6 text-red-500" /> },
+
   ],
   funnel: [
     { stage: 'Contacted', value: 120 },
@@ -49,7 +53,9 @@ const Dashboard = () => (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
       {mockDashboard.metrics.map((m, i) => (
         <div key={i} className="bg-white rounded-xl shadow p-4 flex items-center space-x-4">
+
           <div className="bg-red-50 rounded-full p-2">{m.icon}</div>
+
           <div>
             <div className="text-2xl font-bold text-gray-900">{m.value}</div>
             <div className="text-gray-500 text-sm">{m.label}</div>
@@ -59,11 +65,13 @@ const Dashboard = () => (
     </div>
     {/* Conversion Funnel */}
     <div className="bg-white rounded-xl shadow p-6">
+
       <div className="font-semibold text-gray-800 mb-2 flex items-center"><TrendingUp className="h-5 w-5 mr-2 text-red-500" />Conversion Funnel</div>
       <div className="flex items-end space-x-6 mt-4">
         {mockDashboard.funnel.map((f, i) => (
           <div key={i} className="flex flex-col items-center">
             <div className="h-20 w-8 bg-red-200 rounded-t-lg" style={{ height: `${40 + f.value}px` }}></div>
+
             <div className="text-xs text-gray-600 mt-1">{f.stage}</div>
             <div className="text-sm font-semibold text-gray-800">{f.value}</div>
           </div>
@@ -72,7 +80,9 @@ const Dashboard = () => (
     </div>
     {/* Upcoming Appointments */}
     <div className="bg-white rounded-xl shadow p-6">
+
       <div className="font-semibold text-gray-800 mb-2 flex items-center"><Calendar className="h-5 w-5 mr-2 text-red-500" />Upcoming Appointments</div>
+
       <ul className="divide-y divide-gray-100">
         {mockDashboard.appointments.map((a, i) => (
           <li key={i} className="py-2 flex justify-between items-center">
@@ -94,8 +104,10 @@ const Dashboard = () => (
     {/* Performance Highlights */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {mockDashboard.highlights.map((h, i) => (
+
         <div key={i} className="bg-red-50 rounded-xl p-4 flex flex-col items-center">
           <div className="text-2xl font-bold text-red-700">{h.value}</div>
+
           <div className="text-gray-600 text-sm mt-1">{h.label}</div>
         </div>
       ))}
@@ -173,30 +185,37 @@ const leadTypes = ['Buyer', 'Seller', 'Renter'];
 const leadSources = ['Google Ads', 'Facebook', 'Website', 'Referral'];
 
 const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
+
   <form onSubmit={handleSubmit} className="space-y-6 mt-24 pt-8">
+
     {/* Full Name and Email fields side-by-side */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+
         <input id="name" name="name" type="text" required value={formState.name} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="John Smith" />
       </div>
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
         <input id="email" name="email" type="email" required value={formState.email} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="john@company.com" />
+
       </div>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
         <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">Company name</label>
+
         <input id="company" name="company" type="text" required value={formState.company} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="Company Inc." />
       </div>
       <div>
         <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone number</label>
         <input id="phone" name="phone" type="text" required value={formState.phone} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="123-456-7890" />
+
       </div>
     </div>
     <div>
       <label htmlFor="mostImportantQuestion" className="block text-sm font-medium text-gray-700 mb-1">What is your most important question?</label>
+
       <input id="mostImportantQuestion" name="mostImportantQuestion" type="text" value={formState.mostImportantQuestion} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]" placeholder="e.g., How long until I see results?" />
     </div>
     <div>
@@ -206,6 +225,7 @@ const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
     <div>
       <label htmlFor="estimatedMonthlyLeadVolume" className="block text-sm font-medium text-gray-700 mb-1">What is your estimated monthly lead volume?</label>
       <select id="leadVolume" name="leadVolume" value={formState.leadType} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]">
+
         <option value="">Select an option</option>
         <option value="Less than hundred">Less than 100</option>
         <option value="hundred to five hundred">100-500</option>
@@ -217,7 +237,9 @@ const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
     </div>
     <div>
       <label htmlFor="leadType" className="block text-sm font-medium text-gray-700 mb-1">Which CRM system do you use?</label>
+
       <select id="crmSystem" name="crmSystem" value={formState.leadType} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]">
+
         <option value="">Select an option</option>
         <option value="Real estate buyer">Real estate buyer</option>
         <option value="Real estate seller">Real estate seller</option>
@@ -225,13 +247,16 @@ const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
         <option value="Mortgage home refinance">Mortgage home refinance</option>
       </select>
     </div>
+
     <button type="submit" disabled={formState.loading} className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+
       {formState.loading ? 'Submitting...' : 'Request Demo'}
     </button>
   </form>
 );
 
 const Leads = () => {
+
   const [leads, setLeads] = useState(mockLeads);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
@@ -246,9 +271,11 @@ const Leads = () => {
     return matchesSearch && matchesStatus;
   });
 
+
   const handleAddLead = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+
     const formData = new FormData(form);
     const newLead: Lead = {
       id: leads.length + 1,
@@ -262,11 +289,14 @@ const Leads = () => {
       assigned: 'Unassigned',
     };
     setLeads([...leads, newLead]);
+
     setShowAdd(false);
   };
 
   return (
+
     <div className="space-y-6 mt-24 pt-8">
+
       <div className="flex flex-wrap gap-4 items-center justify-between">
         <div className="flex gap-2">
           <input
@@ -274,6 +304,7 @@ const Leads = () => {
             placeholder="Search by name or email..."
             value={search}
             onChange={e => setSearch(e.target.value)}
+
             className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-red-400"
           />
           <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="px-3 py-2 border rounded-lg">
@@ -290,11 +321,14 @@ const Leads = () => {
           </select>
         </div>
         <button onClick={() => setShowAdd(true)} className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">+ Add Lead</button>
+
       </div>
       <div className="overflow-x-auto rounded-lg shadow">
         <table className="min-w-full bg-white">
           <thead>
+
             <tr className="bg-red-50 text-red-900">
+
               <th className="px-4 py-2 text-left">Name</th>
               <th className="px-4 py-2 text-left">Type</th>
               <th className="px-4 py-2 text-left">Status</th>
@@ -307,8 +341,10 @@ const Leads = () => {
           </thead>
           <tbody>
             {filteredLeads.map(lead => (
+
               <tr key={lead.id} className="hover:bg-red-50 cursor-pointer" onClick={() => setSelectedLead(lead)}>
                 <td className="px-4 py-2 font-medium text-red-700">{lead.name}</td>
+
                 <td className="px-4 py-2">{lead.type}</td>
                 <td className="px-4 py-2">
                   <span className={`px-2 py-1 rounded text-xs font-semibold ${lead.status === 'New' ? 'bg-green-100 text-green-700' : lead.status === 'Qualified' ? 'bg-blue-100 text-blue-700' : lead.status === 'In Progress' ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-200 text-gray-700'}`}>{lead.status}</span>
@@ -331,7 +367,9 @@ const Leads = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md relative animate-fadein">
             <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setSelectedLead(null)}>&times;</button>
+
             <h3 className="text-xl font-bold mb-2 text-red-700">{selectedLead.name}</h3>
+
             <div className="mb-2 text-gray-600">{selectedLead.type} Lead &bull; {selectedLead.status}</div>
             <div className="mb-2"><span className="font-semibold">Source:</span> {selectedLead.source}</div>
             <div className="mb-2"><span className="font-semibold">Phone:</span> {selectedLead.phone}</div>
@@ -343,7 +381,9 @@ const Leads = () => {
               <select value={selectedLead.status} onChange={e => setSelectedLead({ ...selectedLead, status: e.target.value })} className="px-3 py-2 border rounded-lg">
                 {leadStatuses.map(s => <option key={s}>{s}</option>)}
               </select>
+
               <button className="ml-2 bg-red-600 text-white px-3 py-2 rounded-lg" onClick={() => {
+
                 setLeads(leads.map(l => l.id === selectedLead.id ? { ...l, status: selectedLead.status } : l));
                 setSelectedLead(null);
               }}>Save</button>
@@ -356,7 +396,9 @@ const Leads = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <form className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md relative animate-fadein" onSubmit={handleAddLead}>
             <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setShowAdd(false)} type="button">&times;</button>
+
             <h3 className="text-xl font-bold mb-4 text-red-700">Add New Lead</h3>
+
             <div className="mb-3">
               <label className="block text-sm font-medium mb-1">Name</label>
               <input name="name" required className="w-full px-3 py-2 border rounded-lg" />
@@ -382,6 +424,7 @@ const Leads = () => {
               <input name="email" type="email" required className="w-full px-3 py-2 border rounded-lg" />
             </div>
             <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium w-full mt-2">Add Lead</button>
+
           </form>
         </div>
       )}
@@ -411,12 +454,16 @@ const AICalling = () => {
   const [transferNumber, setTransferNumber] = useState('555-0000');
 
   return (
+
     <div className="space-y-8 mt-24 pt-8">
+
       {/* Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {mockAICallMetrics.map((m, i) => (
           <div key={i} className="bg-white rounded-xl shadow p-4 flex flex-col items-center">
+
             <div className="text-2xl font-bold text-red-700">{m.value}</div>
+
             <div className="text-gray-500 text-sm mt-1">{m.label}</div>
           </div>
         ))}
@@ -427,7 +474,9 @@ const AICalling = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
+
               <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Lead</th>
                 <th className="px-4 py-2 text-left">Time</th>
                 <th className="px-4 py-2 text-left">Status</th>
@@ -437,13 +486,17 @@ const AICalling = () => {
             </thead>
             <tbody>
               {mockAICalls.map(call => (
+
                 <tr key={call.id} className="hover:bg-red-50">
                   <td className="px-4 py-2 font-medium text-red-700">{call.lead}</td>
+
                   <td className="px-4 py-2">{call.time}</td>
                   <td className="px-4 py-2">{call.status}</td>
                   <td className="px-4 py-2">{call.outcome}</td>
                   <td className="px-4 py-2">
+
                     <button className="text-red-600 underline" onClick={() => setShowTranscript({lead: call.lead, transcript: call.transcript})}>View</button>
+
                   </td>
                 </tr>
               ))}
@@ -478,7 +531,9 @@ const AICalling = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative animate-fadein">
             <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setShowTranscript(null)}>&times;</button>
+
             <h3 className="text-xl font-bold mb-2 text-red-700">Call Transcript: {showTranscript.lead}</h3>
+
             <pre className="bg-gray-50 rounded p-4 text-sm text-gray-800 whitespace-pre-wrap">{showTranscript.transcript}</pre>
           </div>
         </div>
@@ -546,6 +601,7 @@ const AITexting = () => {
   };
 
   return (
+
     <div className="mt-16 pt-8">
       <div className="flex h-[600px] bg-white rounded-xl shadow overflow-hidden">
         {/* Conversation List */}
@@ -605,6 +661,7 @@ const AITexting = () => {
           </form>
         </section>
       </div>
+
     </div>
   );
 };
@@ -641,6 +698,7 @@ const EmailFollowUp = () => {
   const [template, setTemplate] = useState('Hi {{name}},\n\nThanks for reaching out to XYZ Realty!\n\nLet us know how we can help.');
 
   return (
+
     <div className="mt-16 pt-8">
       <div className="space-y-8">
         {/* Email Sequences */}
@@ -728,6 +786,7 @@ const EmailFollowUp = () => {
           </div>
         )}
       </div>
+
     </div>
   );
 };
@@ -763,17 +822,23 @@ const Appointments = () => {
   };
 
   return (
+
     <div className="space-y-8 mt-24 pt-8">
+
       {/* Calendar View (simple table for demo) */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="flex justify-between items-center mb-2">
           <div className="font-semibold text-gray-800">Upcoming Appointments</div>
+
           <button onClick={() => setShowAdd(true)} className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">+ Schedule Appointment</button>
+
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
+
               <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Lead</th>
                 <th className="px-4 py-2 text-left">Type</th>
                 <th className="px-4 py-2 text-left">Date</th>
@@ -789,7 +854,9 @@ const Appointments = () => {
               )}
               {upcoming.map(a => (
                 <tr key={a.id}>
+
                   <td className="px-4 py-2 font-medium text-red-700">{a.lead}</td>
+
                   <td className="px-4 py-2">{a.type}</td>
                   <td className="px-4 py-2">{a.date}</td>
                   <td className="px-4 py-2">{a.time}</td>
@@ -810,7 +877,9 @@ const Appointments = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
+
               <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Lead</th>
                 <th className="px-4 py-2 text-left">Type</th>
                 <th className="px-4 py-2 text-left">Date</th>
@@ -825,7 +894,9 @@ const Appointments = () => {
               )}
               {past.map(a => (
                 <tr key={a.id}>
+
                   <td className="px-4 py-2 font-medium text-red-700">{a.lead}</td>
+
                   <td className="px-4 py-2">{a.type}</td>
                   <td className="px-4 py-2">{a.date}</td>
                   <td className="px-4 py-2">{a.time}</td>
@@ -842,7 +913,9 @@ const Appointments = () => {
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
           <form className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md relative animate-fadein" onSubmit={handleAdd}>
             <button className="absolute top-2 right-2 text-gray-400 hover:text-gray-700" onClick={() => setShowAdd(false)} type="button">&times;</button>
+
             <h3 className="text-xl font-bold mb-4 text-red-700">Schedule Appointment</h3>
+
             <div className="mb-3">
               <label className="block text-sm font-medium mb-1">Lead</label>
               <input name="lead" required className="w-full px-3 py-2 border rounded-lg" value={form.lead} onChange={e => setForm(f => ({ ...f, lead: e.target.value }))} />
@@ -868,7 +941,9 @@ const Appointments = () => {
               <label className="block text-sm font-medium mb-1">Notes</label>
               <input name="notes" className="w-full px-3 py-2 border rounded-lg" value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} />
             </div>
+
             <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium w-full mt-2">Schedule</button>
+
           </form>
         </div>
       )}
@@ -889,7 +964,9 @@ const LiveCallTransfers = () => {
   const [criteria, setCriteria] = useState('Lead requests agent OR AI qualifies as hot lead');
 
   return (
+
     <div className="space-y-8 mt-24 pt-8">
+
       {/* Transfer Config Panel */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">Live Transfer Settings</div>
@@ -907,7 +984,9 @@ const LiveCallTransfers = () => {
             <label className="block text-sm font-medium mb-1">Agent Availability</label>
             <button
               onClick={() => setAgentAvailable(a => !a)}
+
               className={`px-4 py-2 rounded-lg font-medium ${agentAvailable ? 'bg-red-500 text-white' : 'bg-gray-300 text-gray-700'}`}
+
             >
               {agentAvailable ? 'Available for Transfers' : 'Unavailable'}
             </button>
@@ -921,7 +1000,9 @@ const LiveCallTransfers = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
+
               <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Lead</th>
                 <th className="px-4 py-2 text-left">Agent</th>
                 <th className="px-4 py-2 text-left">Time</th>
@@ -936,7 +1017,9 @@ const LiveCallTransfers = () => {
               )}
               {mockTransferLogs.map(log => (
                 <tr key={log.id}>
+
                   <td className="px-4 py-2 font-medium text-red-700">{log.lead}</td>
+
                   <td className="px-4 py-2">{log.agent}</td>
                   <td className="px-4 py-2">{log.time}</td>
                   <td className="px-4 py-2">{log.status}</td>
@@ -977,7 +1060,9 @@ const ComplianceTools = () => {
   };
 
   return (
+
     <div className="space-y-8 mt-24 pt-8">
+
       {/* Consent Management */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">Consent & Opt-Out Management</div>
@@ -1040,7 +1125,9 @@ const ComplianceTools = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
+
               <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Event</th>
                 <th className="px-4 py-2 text-left">Detail</th>
                 <th className="px-4 py-2 text-left">Date</th>
@@ -1052,7 +1139,9 @@ const ComplianceTools = () => {
               )}
               {mockAuditLog.map(log => (
                 <tr key={log.id}>
+
                   <td className="px-4 py-2 font-medium text-red-700">{log.event}</td>
+
                   <td className="px-4 py-2">{log.detail}</td>
                   <td className="px-4 py-2">{log.date}</td>
                 </tr>
@@ -1098,7 +1187,9 @@ const SettingsAdmin = () => {
   };
 
   return (
+
     <div className="space-y-8 mt-24 pt-8">
+
       {/* User/Team Management */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">User & Team Management</div>
@@ -1109,12 +1200,16 @@ const SettingsAdmin = () => {
             <option>Agent</option>
             <option>Manager</option>
           </select>
+
           <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">Add User</button>
+
         </form>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
+
               <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Name</th>
                 <th className="px-4 py-2 text-left">Email</th>
                 <th className="px-4 py-2 text-left">Role</th>
@@ -1125,7 +1220,9 @@ const SettingsAdmin = () => {
             <tbody>
               {users.map(u => (
                 <tr key={u.id}>
+
                   <td className="px-4 py-2 font-medium text-red-700">{u.name}</td>
+
                   <td className="px-4 py-2">{u.email}</td>
                   <td className="px-4 py-2">{u.role}</td>
                   <td className="px-4 py-2">{u.lastLogin}</td>
@@ -1156,11 +1253,13 @@ const SettingsAdmin = () => {
       {/* Billing Info */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">Billing & Plan</div>
+
         <div className="mb-2">Current Plan: <span className="font-semibold text-red-700">{plan}</span></div>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
               <tr className="bg-red-50 text-red-900">
+
                 <th className="px-4 py-2 text-left">Date</th>
                 <th className="px-4 py-2 text-left">Amount</th>
                 <th className="px-4 py-2 text-left">Status</th>
@@ -1199,7 +1298,9 @@ const SettingsAdmin = () => {
       {/* Support/Help */}
       <div className="bg-white rounded-xl shadow p-6">
         <div className="font-semibold text-gray-800 mb-2">Support & Help</div>
+
         <ul className="list-disc pl-6 text-red-700">
+
           <li><a href="#" className="underline">Knowledge Base</a></li>
           <li><a href="#" className="underline">Contact Support</a></li>
           <li><a href="#" className="underline">User Guide</a></li>
@@ -1312,6 +1413,7 @@ export const FreeSystemDemo: React.FC = () => {
   }
 
   return (
+
     <div className="min-h-screen flex bg-gradient-to-br from-white via-red-50 to-rose-50">
       {/* Left-side menu */}
       <nav className="w-64 bg-white/90 border-r border-gray-200 p-6 flex flex-col space-y-2 shadow-lg">
@@ -1329,12 +1431,15 @@ export const FreeSystemDemo: React.FC = () => {
           >
             {item.label}
           </button>
+
         ))}
       </nav>
       {/* Main content area */}
       <main className="flex-1 p-8 overflow-y-auto">
         {content}
       </main>
+
     </div>
+
   );
 };

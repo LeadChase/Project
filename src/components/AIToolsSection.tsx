@@ -12,6 +12,7 @@ const aiTools = [
     title: 'Texting + Drip Campaigns',
     description: 'Instantly engage, nurture, two-way text, and bulk text with leads.',
     color: 'bg-red-500'
+
   },
   {
     icon: <ArrowRightLeft className="w-8 h-8" />,
@@ -33,6 +34,7 @@ export const AIToolsSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+
             AI-Tools that <span className="text-red-600">Convert</span>
           </h2>
           <p className="mt-4 text-xl text-gray-600">
