@@ -4,11 +4,11 @@ const MOTIF_COUNT = 20;
 
 // Helper to generate random color from a palette
 const palette = [
-  '#6366F1', // indigo
-  '#8B5CF6', // purple
+  '#dc2626', // red-600
+  '#e11d48', // rose-600
   '#F59E42', // orange
   '#10B981', // green
-  '#818CF8', // blue
+  '#ef4444', // red-500
   '#FBBF24', // yellow
   '#F3F4F6', // gray
 ];

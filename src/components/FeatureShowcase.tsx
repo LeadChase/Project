@@ -8,7 +8,7 @@ const features = [
     description: 'AI texts, calls, and emails your leads. This happens immediately after a lead is captured.',
     tags: [
       { label: 'Email', color: 'bg-indigo-100 text-indigo-700' },
-      { label: 'SMS', color: 'bg-purple-100 text-purple-700' },
+      { label: 'SMS', color: 'bg-red-100 text-red-700' },
       { label: 'Call', color: 'bg-green-100 text-green-700' },
     ]
   },
@@ -32,17 +32,19 @@ const features = [
     ]
   },
   {
-    icon: <HeartHandshake className="w-7 h-7" />, color: 'bg-yellow-500', // Changed icon to HeartHandshake
+
+    icon: <HeartHandshake className="w-7 h-7" />, color: 'bg-yellow-500',
     title: 'Long-Term Nurture for Cold Leads',
-    description: 'Long term drip campaigns. Automated rescheduling based on lead\'s timeline. If a lead isn’t ready now, AI keeps engaging them for months.',
+    description: 'Long term drip campaigns. Automated rescheduling based on lead\'s timeline. If a lead isn\'t ready now, AI keeps engaging them for months.',
     tags: [
       { label: 'Drip Campaigns', color: 'bg-yellow-100 text-yellow-700' },
       { label: 'Follow-ups', color: 'bg-orange-100 text-orange-700' },
-      { label: 'Re-engagement', color: 'bg-purple-100 text-purple-700' },
+      { label: 'Re-engagement', color: 'bg-rose-100 text-rose-700' },
     ]
   },
   {
-    icon: <Link className="w-7 h-7" />, color: 'bg-yellow-500', // Changed icon to Link
+    icon: <Link className="w-7 h-7" />, color: 'bg-yellow-500',
+
     title: 'CRM Logging and Syncing',
     description: 'Integrated with your CRM. Realtime notifications and data syncing. All actions, messages, and outcomes are logged automatically.',
     tags: [
@@ -55,9 +57,8 @@ const features = [
 ];
 
 export const FeatureShowcase: React.FC = () => {
-  // Animation: reveal on scroll
   const containerRef = useRef<HTMLDivElement>(null);
-  const [inViewArr, setInViewArr] = useState(features.map(() => false));
+  const [inViewArr, setInViewArr] = useState<boolean[]>(new Array(features.length).fill(false));
 
   useEffect(() => {
     const nodes =
@@ -80,16 +81,17 @@ containerRef.current?.querySelectorAll('.feature-card') ?? [];
     );
     nodes.forEach((node) => observer.observe(node));
     return () => observer.disconnect();
-  }, []);
+  }, [features.length]);
 
   return (
     <section id="how-it-works" className="py-16 bg-transparent relative overflow-x-clip">
       {/* Soft background glow */}
-      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[220px] bg-indigo-300/10 rounded-full blur-3xl z-0"></div>
+      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[220px] bg-red-300/10 rounded-full blur-3xl z-0"></div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-            Here Is <span className="text-purple-600">How It Works</span>
+
+            Here Is <span className="text-red-600">How It Works</span>
           </h2>
         </div>
         <div
@@ -118,15 +120,17 @@ containerRef.current?.querySelectorAll('.feature-card') ?? [];
                       className={`flex items-start mb-1 transition-all duration-500 ${
                         inViewArr[i] ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
                       }`}
-                      style={{ transitionDelay: `${i * 120 + lineIndex * 50}ms` }} /* Staggered delay for each bullet */
+
+                      style={{ transitionDelay: `${i * 120 + lineIndex * 50}ms` }}
                     >
-                      <span className="flex-shrink-0 w-2 h-2 rounded-full bg-indigo-400 mt-2 mr-2"></span> {/* Custom bullet */}
-                      {line.trim() + (lineIndex < f.description.split('. ').filter(Boolean).length - 1 ? '.' : '')} {/* Re-add period if not last */}
+                      <span className="flex-shrink-0 w-2 h-2 rounded-full bg-red-400 mt-2 mr-2"></span>
+                      {line.trim() + (lineIndex < f.description.split('. ').filter(Boolean).length - 1 ? '.' : '')}
                     </li>
                   ))}
                 </ul>
-                <div className="flex flex-wrap gap-2 mt-4"> {/* Increased margin-top for tags */}
-                {f.tags.map((tag, j) => (
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {f.tags.map((tag, j) => (
+
                     <span
                       key={tag.label + j}
                       className={`px-3 py-1 rounded-full text-xs font-semibold shadow-sm transition-all duration-300 animate-tagfade ${tag.color}`}
@@ -151,4 +155,6 @@ containerRef.current?.querySelectorAll('.feature-card') ?? [];
       `}</style>
     </section>
   );
+
 };
+

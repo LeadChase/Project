@@ -57,7 +57,7 @@ export function About() {
           </p>
           <a
             href="/join-waitlist"
-            className="inline-block bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition-colors"
+            className="inline-block bg-gradient-to-r from-red-500 to-rose-600 text-white px-8 py-3 rounded-lg hover:from-red-600 hover:to-rose-700 transition-all duration-300 transform hover:-translate-y-0.5"
           >
             Join Waitlist
           </a>

@@ -73,10 +73,10 @@ export const Testimonials: React.FC = () => {
   }, [testimonials.length]);
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-white relative overflow-x-clip">
+    <section id="testimonials" className="py-20 bg-gradient-to-br from-red-50 via-rose-50 to-white relative overflow-x-clip">
       {/* Soft background glow */}
       <div className="absolute -top-24 -left-24 w-[420px] h-[420px] bg-indigo-300/20 rounded-full blur-3xl z-0"></div>
-      <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-purple-300/20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-red-300/20 rounded-full blur-3xl z-0"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

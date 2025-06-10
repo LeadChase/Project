@@ -153,8 +153,8 @@ export const LeadReports: React.FC = () => {
                 <div className="text-sm text-green-600">Conversion Rate</div>
                 <div className="text-2xl font-bold">{report.summary.conversionRate}%</div>
               </div>
-              <div className="p-4 bg-purple-50 rounded-lg">
-                <div className="text-sm text-purple-600">Avg Response Time</div>
+              <div className="p-4 bg-red-50 rounded-lg">
+                <div className="text-sm text-red-600">Avg Response Time</div>
                 <div className="text-2xl font-bold">{report.summary.averageResponseTime}h</div>
               </div>
               <div className="p-4 bg-yellow-50 rounded-lg">

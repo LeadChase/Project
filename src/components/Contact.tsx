@@ -62,16 +62,18 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-white via-indigo-50 to-purple-50 relative overflow-x-clip">
+    <section id="contact" className="py-20 bg-gradient-to-br from-white via-red-50 to-rose-50 relative overflow-x-clip">
       {/* Soft background glow */}
-      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] bg-indigo-300/20 rounded-full blur-3xl z-0"></div>
-      <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-purple-300/20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] bg-red-300/20 rounded-full blur-3xl z-0"></div>
+      <div className="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-rose-300/20 rounded-full blur-3xl z-0"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={sectionRef}>
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700`}>
           {/* Benefits */}
           <div className="space-y-8">
             <h2 className="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Join the Waitlist & Lock In Lifetime Benefits</span>
+
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">Join the Waitlist & Lock In Lifetime Benefits</span>
+
             </h2>
             <p className="text-xl text-gray-600 mb-8">
               <span className="font-semibold">Get early access & all the benefits before we close the list.</span>
@@ -85,7 +87,8 @@ export const Contact: React.FC = () => {
                 >
     
                   <span className="flex-shrink-0 mt-1 mr-4">
-                <CheckCircle2 className={`h-8 w-8 text-indigo-500 drop-shadow-md transition-transform duration-500`} />
+
+                <CheckCircle2 className={`h-8 w-8 text-red-500 drop-shadow-md transition-transform duration-500`} />
               </span>
                   <div>
                     <div className="font-semibold text-gray-900 text-xl md:text-2xl mb-1">{b.title}</div>
@@ -99,7 +102,7 @@ export const Contact: React.FC = () => {
             <div className="relative bg-white/70 rounded-2xl shadow-2xl p-8 border border-gray-100 backdrop-blur-xl overflow-hidden animate-fadein">
               <div className="absolute -inset-1.5 rounded-3xl z-0 pointer-events-none animate-borderglow"
                 style={{
-                  background: 'linear-gradient(120deg, #818cf8 10%, #a5b4fc 40%, #c4b5fd 70%, #818cf8 100%)',
+                  background: 'linear-gradient(120deg, #ef4444 10%, #f43f5e 40%, #fb7185 70%, #ef4444 100%)',
                   opacity: 0.18,
                   filter: 'blur(16px)',
                 }}
@@ -109,104 +112,114 @@ export const Contact: React.FC = () => {
                   Enter Your Email Below To Join The LeadChoose Waitlist.
                 </h3>
                 <p className="text-xl text-gray-600 mb-8">
-              <span className="font-semibold">An Automation System That Helps Agents Turn More Raw Leads Into Appointments and Closings.</span>
-            </p>
+
+                  <span className="font-semibold">An Automation System That Helps Agents Turn More Raw Leads Into Appointments and Closings.</span>
+                </p>
+
                 {formState.submitted ? (
-                  <div className="text-center py-10 animate-fadein">
-                    <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mx-auto mb-6 animate-pop">
-                      <Check className="h-8 w-8 text-teal-600" />
+                  <div className="text-center p-8">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-500 mb-4">
+                      <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-2">Thank you!</h4>
-                    <p className="text-gray-600">
-                      We've received your request and will be in touch shortly.
-                    </p>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-2">Thank You for Joining!</h4>
+                    <p className="text-gray-600">We'll be in touch soon with your exclusive access.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                        Full Name
-                      </label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formState.name}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]"
-                        placeholder="John Smith"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                        Work Email
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formState.email}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]"
-                        placeholder="john@company.com"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                        Company
-                      </label>
-                      <input
-                        id="company"
-                        name="company"
-                        type="text"
-                        required
-                        value={formState.company}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]"
-                        placeholder="Company Inc."
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                        Phone number
-                      </label>
-                      <input
-                        id="phone"
-                        name="phone"
-                        type="text"
-                        required
-                        value={formState.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 focus:scale-[1.03]"
-                        placeholder="123-456-7890"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={formState.loading}
-                      className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium transition-all 
-                        ${formState.loading 
-                          ? 'opacity-80 cursor-not-allowed' 
-                          : 'hover:shadow-lg hover:from-teal-600 hover:to-teal-700 scale-[1.03]'} flex items-center justify-center`}
-                    >
-                      {formState.loading ? (
-                        <span className="flex items-center justify-center">
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Processing...
-                        </span>
-                      ) : (
-                        <span className="flex items-center justify-center">
+
+                  <div className="waitlist-form-container glassmorphism" data-appear="slide-up" data-delay="0.2">
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                            Full Name
+                          </label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            value={formState.name}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="John Smith"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                            Email Address
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            value={formState.email}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="john@example.com"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                          Company Name
+                        </label>
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          value={formState.company}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                          placeholder="Your Company"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formState.phone}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                          placeholder="(555) 123-4567"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        disabled={formState.loading}
+                        className="w-full py-3 px-6 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 text-white font-medium text-lg shadow-lg hover:shadow-xl hover:from-indigo-600 hover:to-purple-700 transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {formState.loading ? (
+                          <span className="flex items-center justify-center">
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Processing...
+                          </span>
+                        ) : (
+                          <span className="flex items-center justify-center">
+
                           Join the waitlist and save 50%
                           <SendIcon className="h-5 w-5 ml-2" />
                         </span>
-                      )}
-                    </button>
-                  </form>
+                        )}
+                      </button>
+                    </form>
+                    {formState.submitted && (
+                      <div
+                        className={`mt-4 p-4 rounded-md ${
+                          formState.submitted ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
+                        }`}
+                      >
+                        {formState.submitted ? 'Thank you for joining the waitlist!' : 'There was an error submitting the form.'}
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

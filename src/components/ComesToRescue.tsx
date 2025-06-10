@@ -48,7 +48,8 @@ export const ComesToRescue: React.FC = () => {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            LeadChoose <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Comes To Rescue</span>
+
+            LeadChoose <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">Comes To Rescue</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
             We use AI that follows up with every lead <span className="font-semibold">automatically by text & email or phone call </span>, qualifies them, live transfers hot leads, and updates your CRM. No lead slips through the cracks. No more time spent on lead categorization, management, or data entry. No wasted ad spend on leads that never hear back.
@@ -68,7 +69,9 @@ export const ComesToRescue: React.FC = () => {
               tabIndex={0}
             >
               <span className="flex-shrink-0 mt-1 mr-4">
-                <CheckCircle2 className={`h-8 w-8 text-indigo-500 drop-shadow-md transition-transform duration-500 ${inViewArr[i] ? 'scale-110 animate-pop' : 'scale-75'}`} />
+
+                <CheckCircle2 className={`h-8 w-8 text-red-500 drop-shadow-md transition-transform duration-500 ${inViewArr[i] ? 'scale-110 animate-pop' : 'scale-75'}`} />
+
               </span>
               <div>
                 <div className="font-semibold text-gray-900 text-xl md:text-2xl mb-1">{item.title}</div>
