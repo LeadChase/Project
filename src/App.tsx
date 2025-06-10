@@ -6,7 +6,7 @@ import { About } from './components/About.js';
 import { Contact } from './components/Contact.js';
 import { Waitlist } from './components/Waitlist.js';
 import { Confirm } from './components/Confirm.js';
-import { FreeSystemDemo } from './components/freeSystemDemo.js';
+import { FreeSystemDemo } from './components/freeSystemDemo';
 import {CopyrightFooter} from './components/CopyrightFooter.js'
 
 function ScrollToTop() {
