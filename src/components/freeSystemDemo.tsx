@@ -1443,3 +1443,4 @@ export const FreeSystemDemo: React.FC = () => {
 
   );
 };
+export default FreeSystemDemo;
