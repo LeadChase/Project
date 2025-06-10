@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 // --- Settings & Admin Module ---
 const mockUsers = [
   { id: 1, name: 'Alice Agent', email: 'alice@xyzrealty.com', role: 'Agent', lastLogin: '2024-06-10' },
@@ -7,6 +8,10 @@ const mockInvoices = [
   { id: 1, date: '2024-06-01', amount: '$99', status: 'Paid' },
   { id: 2, date: '2024-05-01', amount: '$99', status: 'Paid' },
 ];
+
+// ... existing code ...
+
+// ... existing code ... 
 
 const SettingsAdmin = () => {
   const [users, setUsers] = useState(mockUsers);
@@ -140,4 +145,6 @@ const SettingsAdmin = () => {
       </div>
     </div>
   );
-}; 
+};
+
+export default SettingsAdmin; 

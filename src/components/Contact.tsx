@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { SendIcon, Check, CheckCircle2 } from 'lucide-react'; // Added Gift, Lightbulb, Edit icons
+import { SendIcon, CheckCircle2 } from 'lucide-react'; // Added Gift, Lightbulb, Edit icons
 
 const benefits = [
   {
