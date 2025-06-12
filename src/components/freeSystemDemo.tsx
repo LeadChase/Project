@@ -184,12 +184,12 @@ const leadStatuses = ['New', 'Qualified', 'In Progress', 'Closed'];
 const leadTypes = ['Buyer', 'Seller', 'Renter'];
 const leadSources = ['Google Ads', 'Facebook', 'Website', 'Referral'];
 
-const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
+{/*const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
 
-  <form onSubmit={handleSubmit} className="space-y-6 mt-24 pt-8">
+  <form onSubmit={handleSubmit} className="space-y-6 mt-24 pt-8">*/}
 
     {/* Full Name and Email fields side-by-side */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {/*<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
 
@@ -253,7 +253,7 @@ const DemoForm = ({ formState, handleChange, handleSubmit }: any) => (
       {formState.loading ? 'Submitting...' : 'Request Demo'}
     </button>
   </form>
-);
+);*/}
 
 const Leads = () => {
 
@@ -1395,7 +1395,7 @@ export const FreeSystemDemo: React.FC = () => {
     case 'settings':
       content = <SettingsAdmin />;
       break;
-    case 'demo-form':
+    {/*case 'demo-form':
       content = formState.submitted ? (
               <div className="text-center py-10 animate-fadein">
                 <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mx-auto mb-6 animate-pop">
@@ -1407,7 +1407,7 @@ export const FreeSystemDemo: React.FC = () => {
             ) : (
         <DemoForm formState={formState} handleChange={handleChange} handleSubmit={handleSubmit} />
       );
-      break;
+      break;*/}
     default:
       content = <DemoHome />;
   }
