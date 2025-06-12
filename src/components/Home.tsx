@@ -10,18 +10,14 @@ import {MakeDifferent} from './MakeDifferent.js'
 
 export function Home() {
   useEffect(() => {
-    document.title = 'LeadChoose | AI Calling, Texting & Appointment Setting.';
+    document.title = 'Leadchoose | Convert more leads into closings with AI';
     const link = document.querySelector("link[rel='icon']") as HTMLLinkElement;
     if (link) {
-      // Assuming you placed your downloaded image (e.g., 'my-favicon.png')
-      // in the 'public' folder of your project.
-      // The path starts with '/' to indicate the root of your public directory.
-      link.href = '/LeadChoose.jpeg'; // <--- Change this to your image's path and name
+      link.href = '/LeadChoose.jpeg';
     } else {
-      // If no favicon link exists, create one
       const newLink = document.createElement('link');
       newLink.rel = 'icon';
-      newLink.href = '/LeadChoose.jpeg'; // <--- Change this to your image's path and name
+      newLink.href = '/LeadChoose.jpeg';
       document.head.appendChild(newLink);
     }
   }, []);

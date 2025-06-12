@@ -7,6 +7,7 @@ import { Contact } from './components/Contact.js';
 import { Waitlist } from './components/Waitlist.js';
 import { Confirm } from './components/Confirm.js';
 import { FreeSystemDemo } from './components/freeSystemDemo.js';
+import { RequestDemo } from './components/RequestDemo.js';
 import {CopyrightFooter} from './components/CopyrightFooter.js'
 
 function ScrollToTop() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/join-waitlist" element={<Waitlist />} />
             <Route path="/confirm" element={<Confirm />} />
             <Route path="/freeSystemDemo" element={<FreeSystemDemo />} />
+            <Route path="/request-demo" element={<RequestDemo />} />
           </Routes>
         </main>
         <CopyrightFooter />

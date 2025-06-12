@@ -5,12 +5,12 @@ const allPainPointsTitles = [
   'Too Much Time Is Spend On Bad Leads',
   'Unqualified Leads Clog Your Pipeline',
   'Time Is Spend On Admin Not Selling',
-  'Agents Are Overwhelmed By Unqualified Leads',
+  'Agents Overwhelmed By Unqualified Leads',
   'Leads Are Forgotten Or Neglected',
   'No Clarity On Lead Source/Contact',
   'Slow Response Times',
   'Low Conversion Despite High Volume',
-  'Can’t Remember Follow-ups/Contacts',
+  'Can\'t Remember Follow-ups/Contacts',
 ];
 
 // Split the titles into two columns
@@ -78,7 +78,7 @@ export const PainPoints: React.FC = () => {
                   >
                     !
                   </span>
-                  <span className="text-gray-800 text-lg font-medium">{title}</span>
+                  <span className="text-lg text-gray-700">{title}</span>
                 </li>
               ))}
             </ul>
@@ -103,7 +103,7 @@ export const PainPoints: React.FC = () => {
                   >
                     !
                   </span>
-                  <span className="text-gray-800 text-lg font-medium">{title}</span>
+                  <span className="text-lg text-gray-700">{title}</span>
                 </li>
               ))}
             </ul>
@@ -112,7 +112,7 @@ export const PainPoints: React.FC = () => {
       </div>
 
       {/* Added text below the table */}
-      <div className="text-center mt-12 text-gray-700 text-xl font-semibold">
+      <div className="text-center mt-12 text-2xl font-bold italic text-red-800 hover:text-red-900 transition-colors duration-300">
         And a Lot More You Have Heard Yourself…
       </div>
 

@@ -260,7 +260,7 @@ export class EmailService {
   }
 
   // Enhanced email sending method with retry logic and logging
-  private async sendEmail(options: nodemailer.SendMailOptions, retries = 3): Promise<void> {
+  public async sendEmail(options: nodemailer.SendMailOptions, retries = 3): Promise<void> {
     try {
       const info = await this.transporter.sendMail(options);
       console.log('Email sent successfully:', info.messageId);
