@@ -138,6 +138,17 @@ export class FormService {
           formData.name,
           entry.confirmation_token
         );
+        // Send notification to mateusz@leadchoose.com
+        await this.emailService.sendEmail({
+          from: process.env.SMTP_FROM || 'LeadChoose <ext.abid.hossain@bracu.ac.bd>',
+          to: 'mateusz@leadchoose.com',
+          subject: 'New Request Demo Submission',
+          html: `<h2>New Request Demo Submission</h2>
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Company:</strong> ${formData.company || 'N/A'}</p>
+            <p><strong>Message:</strong> ${formData.message || 'N/A'}</p>`
+        });
       } catch (err) {
         console.error('[EmailService.sendConfirmationEmail] Error:', err, { email: formData.email, name: formData.name, token: entry.confirmation_token });
         // Clean up the pending entry if email fails

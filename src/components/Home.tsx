@@ -10,7 +10,7 @@ import {MakeDifferent} from './MakeDifferent.js'
 
 export function Home() {
   useEffect(() => {
-    document.title = 'LeadChoose | AI Calling, Texting & Appointment Setting.';
+    document.title = 'Leadchoose | Convert more leads into closings with AI';
     const link = document.querySelector("link[rel='icon']") as HTMLLinkElement;
     if (link) {
       // Assuming you placed your downloaded image (e.g., 'my-favicon.png')

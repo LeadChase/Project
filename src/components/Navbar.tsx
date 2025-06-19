@@ -7,7 +7,7 @@ const navLinks = [
   { name: 'Why LeadChoose', href: '/#differentiators' },
   { name: 'How It Works', href: '/#how-it-works' },
 
-  { name: 'Free System Demo', href: '/freeSystemDemo' },
+  { name: 'Free System Demo', href: '/request-demo' },
 
 ];
 
