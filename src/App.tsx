@@ -8,6 +8,7 @@ import { Waitlist } from './components/Waitlist.js';
 import { Confirm } from './components/Confirm.js';
 import { FreeSystemDemo } from './components/freeSystemDemo';
 import {CopyrightFooter} from './components/CopyrightFooter.js'
+import { RequestDemo } from './components/RequestDemo.js';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,6 +34,7 @@ function App() {
             <Route path="/join-waitlist" element={<Waitlist />} />
             <Route path="/confirm" element={<Confirm />} />
             <Route path="/freeSystemDemo" element={<FreeSystemDemo />} />
+            <Route path="/request-demo" element={<RequestDemo />} />
           </Routes>
         </main>
         <CopyrightFooter />

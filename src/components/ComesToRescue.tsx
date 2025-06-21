@@ -85,7 +85,7 @@ export const ComesToRescue: React.FC = () => {
         {/* Removed specific float keyframes as they are no longer needed */}
 
         {/* Added sentence below the section */}
-      <div className="text-center mt-12 text-gray-700 text-xl font-semibold">
+      <div className="text-center mt-12 text-2xl font-bold italic text-red-800">
         Get more qualified appointments. Grow your revenue.
       </div>
         <style>{`

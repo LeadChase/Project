@@ -37,8 +37,8 @@ export const AIToolsSection = () => {
 
             AI-Tools that <span className="text-red-600">Convert</span>
           </h2>
-          <p className="mt-4 text-xl text-gray-600">
-            Leverage cutting-edge AI to streamline your sales process and maximize conversions.
+          <p className="text-2xl font-bold italic text-red-800 hover:text-red-900 transition-colors duration-300">
+            Make your sales process faster and better with the help of AI. Save time. Close more deals.
           </p>
         </div>
 
