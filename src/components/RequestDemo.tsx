@@ -75,7 +75,7 @@ export function RequestDemo() {
       <div className="max-w-2xl mx-auto bg-gradient-to-b from-red-200 to-rose rounded-lg shadow-md p-8 mt-20">
         <div className="mb-8">
           <img 
-            src="/LeadChoose.jpeg" 
+            src="/LeadChoose.png" 
             alt="LeadChoose Logo" 
             className="h-28 w-56 mx-auto mb-4"
           />
@@ -206,9 +206,9 @@ export function RequestDemo() {
               onChange={handleInputChange}
             >
               <option value="">Select simulation</option>
-              <option value="Real Estate Sales">Real Estate Sales</option>
-              <option value="Real Estate Other">Real Estate Other</option>
-              <option value="Auto Estate Sales">Auto Estate Sales</option>
+              <option value="Real Estate Sales">Real Estate Buyer</option>
+              <option value="Real Estate Other">Real Estate Seller</option>
+              <option value="Auto Estate Sales">Real Estate Renter</option>
             </select>
           </div>
 
@@ -233,7 +233,7 @@ export function RequestDemo() {
               By entering your information and submitting this form, you agree to our Terms of Service and Privacy Policy. Rest assured that your information will be used according to your best interests. We will contact you shortly to schedule a demo. Please note that you will manage your own leads and there will be no TCPA or CCPA to cancel.
             </p>
             <p className="mt-2">
-              Copyright © 2023 LeadChoose. All rights reserved.
+              Copyright © 2025 LeadChoose. All rights reserved.
             </p>
           </div>
 

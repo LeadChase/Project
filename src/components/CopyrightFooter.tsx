@@ -1,4 +1,3 @@
-
 // Assuming Logo component is defined elsewhere and imported,
 // or you can define it inline if it's simple SVG/text.
 // For this example, I'll use a placeholder Logo component if not provided,
@@ -11,7 +10,7 @@ const Logo = () => (
   <div className="flex items-center space-x-2">
     {/* Updated src to point to an image in the public folder */}
     {/* Replace 'your-logo-name.png' with the actual filename of your logo in the public folder */}
-    <img src="/LeadChoose.jpeg" alt="LeadChoose Logo" className="h-10 w-10 rounded-full" />
+    <img src="/LeadChoose.png" alt="LeadChoose Logo" className="h-10 w-10 rounded-full" />
     <span className="text-xl font-bold text-gray-900">LeadChoose</span>
   </div>
 );
