@@ -70,7 +70,7 @@ export const Hero: React.FC = () => {
         </div>
         
         {/* Email Signup Form - Refined input and button sizing */}
-        <div className="w-full max-w-[480px] mt-2 px-4 sm:px-0">
+        <div className="w-full max-w-[640px] mt-2 px-4 sm:px-0">
           <div className="bg-white/90 rounded-[22px] shadow-lg p-4 sm:p-5 backdrop-blur-sm border border-white/70">
             <form onSubmit={handleSubmit} className="space-y-3">
               <div className="flex flex-col sm:flex-row gap-2.5">
@@ -79,7 +79,7 @@ export const Hero: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="flex-1 min-w-0 px-4 py-2.5 text-sm sm:text-base rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700"
+                  className="flex-1 min-w-[280px] px-2 py-2.5 text-sm sm:text-base rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700"
                   required
                 />
                 <button

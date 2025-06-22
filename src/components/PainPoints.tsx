@@ -112,7 +112,7 @@ export const PainPoints: React.FC = () => {
       </div>
 
       {/* Added text below the table */}
-      <div className="text-center mt-12 text-2xl font-bold italic text-red-800 hover:text-red-900 transition-colors duration-300">
+      <div className="text-center mt-12 text-2xl font-bold italic text-red-500">
         And a Lot More You Have Heard Yourself…
       </div>
 
